@@ -8,10 +8,19 @@ export default function App() {
     
 
     return (
-        <View>
-            <Login></Login>
+        <View style = {styles.container}>
+            
             
         </View>
     );
 }
 
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+    },
+})
