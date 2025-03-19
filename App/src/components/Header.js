@@ -6,13 +6,13 @@ export default function Header() {
     <View style={styles.header}>
       <View style={styles.nav}>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navLink}>Inicio</Text>
+          <Text style={styles.navLink}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navLink}>Acerca de</Text>
+          <Text style={styles.navLink}>Reports</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navLink}>Contacto</Text>
+          <Text style={styles.navLink}>User Management</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -21,11 +21,12 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#333",
-    paddingVertical: 20,
+    backgroundColor: "#23998E",
+    paddingVertical: 15,
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",  // Nota: Las sombras son diferentes en React Native
     alignItems: "center",  // Centrar los elementos horizontalmente
     justifyContent: "center",  // Centrar los elementos verticalmente
+    width: '100%',
   },
   nav: {
     flexDirection: "row",  // Mostrar los enlaces en una fila
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   },
   navLink: {
     color: "white",
-    fontSize: 18,
+    fontSize: 10,
     fontWeight: "bold",
     textDecorationLine: "none",  // React Native no soporta text-decoration, pero puedes usar este estilo para evitar subrayado
   },
