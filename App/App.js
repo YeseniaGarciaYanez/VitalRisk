@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, Button, View, Image } from 'react-native';
-import UserManagement from './assets/admin/UserManagement';
-import Login from './src/screens/Login';
 
+import Maintenance from './src/screens/Maintenance';
+import Header from './src/components/Header';
 
 export default function App() {
     
 
     return (
         <View style = {styles.container}>
-            
+            <Header></Header>
+            <Maintenance></Maintenance>
             
         </View>
     );
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         padding: 16,
     },
 })

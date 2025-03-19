@@ -1,18 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-export default function Header() {
+
+export default function Header() {  
+  const image = require('../../Logo/logovital.png');
+
   return (
     <View style={styles.header}>
       <View style={styles.nav}>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navLink}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navLink}>Reports</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navLink}>User Management</Text>
+          <Image style={styles.image} source={image} />
         </TouchableOpacity>
       </View>
     </View>
@@ -27,6 +24,7 @@ const styles = StyleSheet.create({
     alignItems: "center",  // Centrar los elementos horizontalmente
     justifyContent: "center",  // Centrar los elementos verticalmente
     width: '100%',
+    marginBottom: '40px',
   },
   nav: {
     flexDirection: "row",  // Mostrar los enlaces en una fila
@@ -44,5 +42,9 @@ const styles = StyleSheet.create({
   },
   navLinkHovered: {
     color: "#4CAF50",  // Este estilo se puede aplicar de manera dinámica si es necesario
-  }
+  },
+  image: {
+    width: 50,
+    height: 25,
+  },
 });
