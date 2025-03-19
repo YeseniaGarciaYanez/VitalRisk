@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, Button, View, Image } from 'react-native';
 
 
 export default function Login() {
-    const image = require('./Logo/VitalRisk.jpg');
+    const image = require('');
 
 
     return (
