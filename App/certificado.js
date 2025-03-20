@@ -1,58 +1,22 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { captureRef } from 'react-native-view-shot';
-import Pdf from 'react-native-pdf-lib';
-import * as Sharing from 'expo-sharing';
-import * as FileSystem from 'expo-file-system';
 
 const Certificado = ({ nombreEquipo, numeroSerie, fechaCertificacion }) => {
-  const viewRef = useRef();
-
-  const generarPDF = async () => {
-    try {
-      // Capturar la vista como imagen
-      const uri = await captureRef(viewRef, {
-        format: 'png',
-        quality: 0.8,
-      });
-
-      // Ruta para guardar el PDF
-      const pdfPath = `${FileSystem.documentDirectory}certificado.pdf`;
-
-      // Crear el PDF usando la imagen capturada
-      const pdf = await Pdf.PDFDocument.create(pdfPath);
-      const page = Pdf.PDFPage.create()
-        .setMediaBox(612, 792) // Tamaño de carta estándar
-        .drawImage(uri, 'jpg', {
-          x: 50,
-          y: 500,
-          width: 512,
-          height: 288,
-        });
-      pdf.addPages(page);
-      await pdf.write();
-
-      // Compartir el archivo PDF
-      await Sharing.shareAsync(pdfPath);
-    } catch (error) {
-      console.error('Error al generar el PDF:', error);
-    }
-  };
 
   return (
     <View style={styles.container}>
       {/* Certificado diseñado */}
-      <View ref={viewRef} style={styles.certificado}>
-        <Text style={styles.titulo}>Certificado de Equipo Médico</Text>
-        <Text style={styles.texto}>📌 Nombre del Equipo: {nombreEquipo}</Text>
-        <Text style={styles.texto}>🔢 Número de Serie: {numeroSerie}</Text>
-        <Text style={styles.texto}>📅 Fecha de Certificación: {fechaCertificacion}</Text>
-        <Text style={styles.firma}>_________________________{"\n"}Firma Autorizada</Text>
+      <View style={styles.certificado}>
+        <Text style={styles.titulo}>Medical Equipment Certificate</Text>
+        <Text style={styles.texto}>📌 Equipment: {nombreEquipo}</Text>
+        <Text style={styles.texto}>🔢 ID: {numeroSerie}</Text>
+        <Text style={styles.texto}>📅 Certification date: {fechaCertificacion}</Text>
+        <Text style={styles.firma}>_{"\n"}Authorized signature</Text>
       </View>
 
-      {/* Botón para descargar el PDF */}
-      <TouchableOpacity style={styles.boton} onPress={generarPDF}>
-        <Text style={styles.botonTexto}>Descargar Certificado (PDF)</Text>
+      {/* Botón opcional que simula una acción */}
+      <TouchableOpacity style={styles.boton}>
+        <Text style={styles.botonTexto}>Download</Text>
       </TouchableOpacity>
     </View>
   );
@@ -61,7 +25,6 @@ const Certificado = ({ nombreEquipo, numeroSerie, fechaCertificacion }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
@@ -79,7 +42,7 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333333',
+    color: '#333333',  
     marginBottom: 15,
   },
   texto: {
@@ -103,7 +66,7 @@ const styles = StyleSheet.create({
   botonTexto: {
     color: '#ffffff',
     fontSize: 16,
-    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
