@@ -1,0 +1,50 @@
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+
+
+export default function Header() {  
+  const image = require('../../Logo/logovital.png');
+
+  return (
+    <View style={styles.header}>
+      <View style={styles.nav}>
+        <TouchableOpacity style={styles.navItem}>
+          <Image style={styles.image} source={image} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: "#23998E",
+    paddingVertical: 15,
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",  // Nota: Las sombras son diferentes en React Native
+    alignItems: "center",  // Centrar los elementos horizontalmente
+    justifyContent: "center",  // Centrar los elementos verticalmente
+    width: '100%',
+    marginBottom: '40px',
+  },
+  nav: {
+    flexDirection: "row",  // Mostrar los enlaces en una fila
+    justifyContent: "space-around",  // Espaciado igual entre los elementos
+    width: "100%",  // Asegurar que la barra ocupe todo el ancho
+  },
+  navItem: {
+    marginHorizontal: 15,  // Espaciado horizontal entre los elementos
+  },
+  navLink: {
+    color: "white",
+    fontSize: 10,
+    fontWeight: "bold",
+    textDecorationLine: "none",  // React Native no soporta text-decoration, pero puedes usar este estilo para evitar subrayado
+  },
+  navLinkHovered: {
+    color: "#4CAF50",  // Este estilo se puede aplicar de manera dinámica si es necesario
+  },
+  image: {
+    width: 50,
+    height: 25,
+  },
+});
