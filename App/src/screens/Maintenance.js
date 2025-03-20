@@ -16,6 +16,7 @@ const Maintenance = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Equipment Maintenance</Text>
       <Text style={styles.label}>Equipment:</Text>
       <TextInput style={styles.input} value={equipment} onChangeText={setEquipment} placeholder="" />
       
@@ -27,7 +28,7 @@ const Maintenance = () => {
 
       
       
-      <Button title="Send" onPress={handleSubmit} color="#23998E"/>
+      <Button title="Send" onPress={handleSubmit} color="#1D5E69"/>
     </View>
   );
 };
@@ -36,10 +37,19 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
+  title: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginTop: 50,
+    marginBottom: 35,
+    color: '#FA3419'
+  },
+
   label: {
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
+    color: '#1D5E69',
   },
   input: {
     borderWidth: 1,
