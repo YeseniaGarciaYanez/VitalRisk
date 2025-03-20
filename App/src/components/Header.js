@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
 const Header = () => {
-  const logo = require('../../Logo/logovital.png')
+  const logo = require('../../Logo/vitarisk.png')
   return (
     <View style={styles.header}>
       <Image style={styles.image} source={logo}/>
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
+    paddingTop: 25,
     backgroundColor: '#23998E',
     paddingVertical: 15,
     justifyContent: 'center',
@@ -23,8 +24,8 @@ const styles = StyleSheet.create({
     zIndex: 1, // Para asegurarte de que esté por encima de otros componentes si es necesario
   },
   image: {
-    width: 50,
-    height: 25,
+    width: 100,
+    height: 50,
   },
 });
 

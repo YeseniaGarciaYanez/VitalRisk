@@ -4,14 +4,15 @@ import { StyleSheet, Text, TextInput, Button, View, Image } from 'react-native';
 import Maintenance from './src/screens/Maintenance';
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
-import Profile from './src/screens/Profile';
 
 export default function App() {
     
 
     return (
         <View style = {styles.container}>
-            <Profile></Profile>
+            <Header></Header>
+            <Maintenance></Maintenance>
+            <Footer></Footer>
         </View>
     );
 }
