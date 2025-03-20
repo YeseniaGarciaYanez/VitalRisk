@@ -2,30 +2,33 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 
 const Maintenance = () => {
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
-  const [telefono, setTelefono] = useState('');
+  const [equipment, setEquipment] = useState('');
+  const [problem, setProblem] = useState('');
+  const [date, setDate] = useState('');
 
   const handleSubmit = () => {
-    if (!nombre || !email || !telefono) {
-      Alert.alert('Error', 'Todos los campos son obligatorios');
+    if (!equipment || !problem || !date) {
+      Alert.alert('Error', 'No data found');
       return;
     }
-    Alert.alert('Formulario enviado', `Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}`);
+    Alert.alert('Form submitted');
   };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Equipment Maintenance</Text>
       <Text style={styles.label}>Equipment:</Text>
-      <TextInput style={styles.input} value={nombre} onChangeText={setNombre} placeholder="Ingrese su nombre" />
+      <TextInput style={styles.input} value={equipment} onChangeText={setEquipment} placeholder="" />
       
       <Text style={styles.label}>Problem:</Text>
-      <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Ingrese su email" keyboardType="email-address" />
+      <TextInput style={[styles.input, styles.problem]} value={problem} onChangeText={setProblem} placeholder="" />
       
       <Text style={styles.label}>Appointment date:</Text>
-      <TextInput style={styles.input} value={telefono} onChangeText={setTelefono} placeholder="" keyboardType="phone-pad" />
+      <TextInput style={styles.input} value={date} onChangeText={setDate} placeholder="" />
+
       
-      <Button title="Send" onPress={handleSubmit} />
+      
+      <Button title="Send" onPress={handleSubmit} color="#1D5E69"/>
     </View>
   );
 };
@@ -34,10 +37,19 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
+  title: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginTop: 50,
+    marginBottom: 35,
+    color: '#FA3419'
+  },
+
   label: {
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
+    color: '#1D5E69',
   },
   input: {
     borderWidth: 1,
@@ -45,7 +57,13 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 5,
     borderRadius: 5,
+    marginBottom: 25,
   },
+  problem: {
+    padding: 50,
+  },
+
+  
 });
 
 export default Maintenance;
