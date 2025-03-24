@@ -45,8 +45,8 @@
           <button class="hidden" id="login">Sign In</button>
         </div>
         <div class="toggle-panel toggle-right">
-          <h1>Hola!!</h1>
-          <p>Registrate con tus datos personales para disfrutar de la pagina</p>
+          <h1>Hello!!</h1>
+          <p>Register with your personal details to use all of site features</p>
           <button class="hidden" id="register">Sign Up</button>
         </div>
       </div>
