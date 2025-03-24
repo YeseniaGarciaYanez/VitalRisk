@@ -12,7 +12,7 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="https://via.placeholder.com/50" alt="Logo" style="border-radius: 50%;">
-            <h2>Nombre App</h2>
+            <h2>VitalRisk</h2>
         </div>
         <ul class="sidebar-menu">
             <li class="active"><i class="fas fa-home"></i> Dashboard</li>
@@ -51,7 +51,7 @@
         <div class="content">
             <div class="cards">
                 <div class="card">
-                    <h3>Usuarios Activos</h3>
+                    <h3>Maquinas Activos</h3>
                     <p>1,245</p>
                 </div>
                 <div class="card">

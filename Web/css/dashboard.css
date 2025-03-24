@@ -1,12 +1,20 @@
 :root {
-    --sidebar-bg: #2C3E50;
-    --sidebar-text: #ECF0F1;
-    --header-bg: #FFFFFF;
-    --content-bg: #F5F7FA;
-    --primary-color: #3498DB;
-    --hover-color: #2980B9;
+    /* Paleta basada en tu imagen */
+    --sidebar-bg: #1D5E69;         /* Verde azulado oscuro (para sidebar) */
+    --sidebar-text: #F3E1B6;       /* Beige claro (texto en sidebar) */
+    --header-bg: #7CBC9A;          /* Beige claro (header) */
+    --content-bg: #FFFFFF;         /* Blanco (fondo contenido) */
+    --primary-color: #FA3419;      /* Rojo vibrante (acciones primarias) */
+    --secondary-color: #23998E;    /* Verde azulado (acciones secundarias) */
+    --hover-color: #7CBC9A;        /* Verde natural (efectos hover) */
+    --accent-light: #F3E1B6;       /* Beige claro (detalles) */
+    --accent-dark: #1D5E69;        /* Verde azulado oscuro (textos) */
+    
+    /* Colores adicionales para componentes */
+    --card-bg: #F9F7F3;           /* Fondo tarjetas (beige muy claro) */
+    --notification: #FA3419;       /* Notificaciones (rojo) */
+    --success: #7CBC9A;            /* Éxito (verde natural) */
 }
-
 * {
     margin: 0;
     padding: 0;
