@@ -15,6 +15,7 @@
     --notification: #FA3419;       /* Notificaciones (rojo) */
     --success: #7CBC9A;            /* Éxito (verde natural) */
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -80,6 +81,34 @@ body {
     flex: 1;
     margin-left: 250px;
     transition: all 0.3s;
+}
+
+/* Estilos para el submenú */
+.sidebar-menu li {
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    list-style: none;
+    padding-left: 20px; /* Espaciado del submenú */
+    margin-top: 5px;
+}
+
+.submenu li {
+    padding: 8px 15px;
+    margin-bottom: 5px; /* Espaciado entre elementos del submenú */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.submenu li:hover {
+    background-color: var(--hover-color);
+}
+
+/* Mostrar submenú cuando el padre es clickeado */
+.sidebar-menu li.active .submenu {
+    display: block;
 }
 
 /* Header */
@@ -190,6 +219,12 @@ body {
     display: none;
     cursor: pointer;
     font-size: 1.5rem;
+}
+
+img {
+    border-radius: 50%;
+    width: 200px;
+    height: 100px;
 }
 
 /* Responsive */
