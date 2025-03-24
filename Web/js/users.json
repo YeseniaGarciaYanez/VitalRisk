@@ -1,0 +1,15 @@
+{
+    "admin": {
+      "nombre": "Administrador",
+      "menu": ["Dashboard", "Usuarios", "Reportes", "Configuración"]
+    },
+    "editor": {
+      "nombre": "Editor",
+      "menu": ["Mis Artículos", "Crear Artículo", "Borradores"]
+    },
+    "viewer": {
+      "nombre": "Lector",
+      "menu": ["Inicio", "Artículos", "Categorías"]
+    }
+  }
+  
