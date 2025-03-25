@@ -40,6 +40,15 @@ body {
     z-index: 1000;
 }
 
+.sidebar-menu a {
+    text-decoration: none;
+    color: var(--sidebar-text);
+}
+
+
+
+
+
 .sidebar-header {
     padding: 20px;
     text-align: center;
@@ -66,9 +75,7 @@ body {
     cursor: pointer;
 }
 
-.sidebar-menu li.active {
-    background-color: var(--primary-color);
-}
+
 
 .sidebar-menu li i {
     margin-right: 10px;
@@ -95,11 +102,22 @@ body {
     margin-top: 5px;
 }
 
+.submenu.active {
+    display: block;
+}
+
+
 .submenu li {
     padding: 8px 15px;
     margin-bottom: 5px; /* Espaciado entre elementos del submenú */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
+}
+
+.submenu li a {
+    text-decoration: none;
+    color: var(--sidebar-text);
+    display: block;
 }
 
 .submenu li:hover {
@@ -110,6 +128,7 @@ body {
 .sidebar-menu li.active .submenu {
     display: block;
 }
+
 
 /* Header */
 .header {
