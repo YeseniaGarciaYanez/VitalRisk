@@ -3,22 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const menus = {
         "tecnico": [
-            { "icon": "fas fa-home", "name": "Home", "url": "Dashboard.php" },
-            { "icon": "fas fa-tools", "name": "Maintenance", "submenu": [
-                { "name": "Preventive", "url": "maintenance.php" },
-                { "name": "Reports", "url": "corrective.html" }
+            { "icon": "fas fa-home", "name": "Inicio", "url": "Dashboard.php" },
+            { "icon": "fas fa-hospital", "name": "Hospitales", "url": "hospital.php" },
+            { "icon": "fas fa-tools", "name": "Mantenimiento", "submenu": [
+                { "name": "Preventivo", "url": "maintenance.php" },
+                { "name": "Reportes", "url": "corrective.html" }
             ]},
-            { "icon": "fas fa-box-open", "name": "Inventory", "submenu": [
-                { "name": "New Items", "url": "new-items.html" },
-                { "name": "Stock Levels", "url": "stock-levels.html" }
+            { "icon": "fas fa-laptop-medical", "name": "Equipos", "url": "equipment.php" },
+            { "icon": "fas fa-file", "name": "Archivos", "submenu": [
+                { "name": "Subidos", "url": "uploaded.html" },
+                { "name": "Compartidos", "url": "shared.html" }
             ]},
-            { "icon": "fas fa-file", "name": "Files", "submenu": [
-                { "name": "Uploaded", "url": "uploaded.html" },
-                { "name": "Shared", "url": "shared.html" }
-            ]},
-            { "icon": "fas fa-folder", "name": "Reports", "submenu": [
-                { "name": "Daily", "url": "daily-reports.html" },
-                { "name": "Monthly", "url": "monthly-reports.html" }
+            { "icon": "fas fa-folder", "name": "Reportes", "submenu": [
+                { "name": "Diario", "url": "daily-reports.html" },
+                { "name": "Mensual", "url": "monthly-reports.html" }
             ]}
         ]
     };
