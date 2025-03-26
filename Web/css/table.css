@@ -1,0 +1,47 @@
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezados de la tabla */
+thead {
+    background: #1D5E69;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Filas impares con fondo gris claro */
+tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+/* Efecto hover */
+tbody tr:hover {
+    background: #E0F2F1;
+    transition: background 0.3s;
+}
+
+/* Texto del estado con colores según el estado */
+td:last-child {
+    font-weight: bold;
+}
+
+/* Estados personalizados */
+td:contains("En proceso") {
+    color: #e67e22; /* Naranja */
+}
+
+td:contains("Completado") {
+    color: #27ae60; /* Verde */
+}

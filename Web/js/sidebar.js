@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "tecnico": [
             { "icon": "fas fa-home", "name": "Home", "url": "Dashboard.php" },
             { "icon": "fas fa-tools", "name": "Maintenance", "submenu": [
-                { "name": "Preventive", "url": "preventive.html" },
-                { "name": "Corrective", "url": "corrective.html" }
+                { "name": "Preventive", "url": "maintenance.php" },
+                { "name": "Reports", "url": "corrective.html" }
             ]},
             { "icon": "fas fa-box-open", "name": "Inventory", "submenu": [
                 { "name": "New Items", "url": "new-items.html" },
