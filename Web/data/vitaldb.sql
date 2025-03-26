@@ -1,3 +1,5 @@
+-- Active: 1725633278570@@127.0.0.1@3306@vitaldb
+-- Active: 1725633278570@@127.0.0.1@3306@phpmyadmin
 -- Creación de la base de datos
 CREATE DATABASE vitaldb;
 USE vitaldb;
