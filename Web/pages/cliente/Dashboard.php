@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard con Sidebar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
 </head>
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-        <img src="../images/logovital2.png" alt="Logo" style="border-radius: 50%;">
+        <img src="../../images/logovital2.png" alt="Logo" style="border-radius: 50%;">
             <h2>VitalRisk</h2>
         </div>
         <ul class="sidebar-menu">
-            <li class="active"><i class="fas fa-home"></i> Dashboard</li>
-            <li><i class="fas fa-chart-line"></i> Maintenance </li>
-            <li><i class="fas fa-project-diagram"></i> History</li>
-            <li><i class="fas fa-cog"></i> Configuración</li>
-            <li><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</li>
+            <li><a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="mantenimiento.php"><i class="fas fa-tools"></i> Maintenance</a></li>
+            <li><a href="historial.php"><i class="fas fa-history"></i> History</a></li>
+            <li class="active"><a href="normativas.php"><i class="fas fa-file-alt"></i> Normativas</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a></li>
         </ul>
     </div>
 
