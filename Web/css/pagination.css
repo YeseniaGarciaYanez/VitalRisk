@@ -1,0 +1,40 @@
+/* Estilos para la tabla */
+.table-container {
+    margin-bottom: 80px; /* Espacio para la paginación fija */
+}
+
+/* Contenedor de la paginación fija */
+.pagination-container {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    gap: 5px;
+}
+
+/* Estilos de la paginación */
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #fff;
+    background: #7CBC9A;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.pagination a:hover {
+    background: #004D40;
+}
+
+.pagination .active {
+    background: #1D5E69;
+    pointer-events: none;
+}

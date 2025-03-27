@@ -1,13 +1,14 @@
 /* Estilos para la tabla */
 table {
-    width: 100%;
+    width: 90%;
+    margin: 20px auto; /* Esto centrará la tabla horizontalmente */
     border-collapse: collapse;
-    margin-top: 20px;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Encabezados de la tabla */
 thead {

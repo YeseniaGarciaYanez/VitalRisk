@@ -1,3 +1,23 @@
+<?php
+// Número de registros por página
+$limit = 10;
+
+// Obtener el número de página actual desde la URL, por defecto será 1
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit; // Calcular el inicio de los datos para esta página
+
+// Obtener los datos de la API
+$file = file_get_contents('https://sheet2api.com/v1/I4xIqLkaSRe4/equiposmedicos?ubicacion=Hospital%20General%20de%20Tijuana,%20Baja%20California');
+$data = json_decode($file, true);
+
+// Contar el total de registros
+$total_records = count($data);
+$total_pages = ceil($total_records / $limit);
+
+// Limitar los datos a los que corresponden a la página actual
+$data_paginada = array_slice($data, $offset, $limit);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,8 +27,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/table.css">
+    <link rel="stylesheet" href="../../css/pagination.css">
+   
 </head>
 <body>
+
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
@@ -27,7 +50,7 @@
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <h1>Equipment</h1>
+                <h1>Equipo médico</h1>
             </div>
             <div class="header-right">
                 <div class="notification">
@@ -41,50 +64,53 @@
             </div>
         </div>
 
-        
-
-        <!-- Content -->
-        <div class="content">
-        <div class="content">
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Equipo</th>
-                <th>Categoría</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Piezas</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php
-                $file = file_get_contents('https://sheet2api.com/v1/I4xIqLkaSRe4/equiposmedicos?ubicacion=Hospital%20General%20de%20Tijuana,%20Baja%20California');
-                $data = json_decode($file, true);
-
-                foreach($data as $item){
-                    ?>
-                    <td><?php $ID = $item['ID Equipo']; echo $ID; ?></td>
-                    <td><?php $equipo = $item['Nombre del Equipo']; echo $equipo; ?></td>
-                    <td><?php $categoria = $item['Categoría']; echo $categoria; ?></td>
-                    <td><?php $marca = $item['Marca']; echo $marca; ?></td>
-                    <td><?php $modelo = $item['Modelo']; echo $modelo; ?></td>
-                    <td><?php $piezas = $item['Piezas']; echo $piezas; ?></td>
-                    <td><?php $estado = $item['Estado']; echo $estado; ?></td>
+        <!-- Contenedor de la tabla -->
+        <div class="table-container">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Equipo</th>
+                        <th>Categoría</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Piezas</th>
+                        <th>Estado</th>
                     </tr>
-              <?php  } 
+                </thead>
+                <tbody>
+                    <?php foreach($data_paginada as $item): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($item['ID Equipo'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($item['Nombre del Equipo'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($item['Categoría'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($item['Marca'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($item['Modelo'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($item['Piezas'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($item['Estado'] ?? ''); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
 
-            ?>
-        
-            
-            
-        </tbody>
-    </table>
-</div>
+        <!-- Contenedor fijo de paginación -->
+        <div class="pagination-container">
+            <div class="pagination">
+                <?php if ($page > 1): ?>
+                    
+                    <a href="?page=<?php echo ($page - 1); ?>">‹ </a>
+                <?php endif; ?>
 
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <a href="?page=<?php echo $i; ?>" class="<?php echo ($page == $i) ? 'active' : ''; ?>"><?php echo $i; ?></a>
+                <?php endfor; ?>
+
+                <?php if ($page < $total_pages): ?>
+                    <a href="?page=<?php echo ($page + 1); ?>"> ›</a>
+            
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 
