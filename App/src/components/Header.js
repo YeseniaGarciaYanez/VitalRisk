@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    paddingTop: 25,
     backgroundColor: '#23998E',
-    paddingVertical: 15,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1, // Para asegurarte de que esté por encima de otros componentes si es necesario
+
+
   },
   image: {
     width: 100,

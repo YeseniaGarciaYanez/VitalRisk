@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: '#23998E',
-    paddingVertical: 10,
     alignItems: 'center',
   },
   footerRow: {

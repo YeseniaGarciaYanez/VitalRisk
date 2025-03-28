@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, Button, View, Image } from 'react-native';
 
+import Login from './src/screens/Login';
 import Maintenance from './src/screens/Maintenance';
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
@@ -12,7 +13,7 @@ export default function App() {
     return (
         <View style = {styles.container}>
             <Header></Header>
-            <Maintenance></Maintenance>
+            <Maintenance/>
             <Footer></Footer>
         </View>
     );
@@ -24,5 +25,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         padding: 16,
+        backgroundColor: '#FFF',
     },
 })
