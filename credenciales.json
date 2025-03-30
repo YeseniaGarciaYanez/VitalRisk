@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "vitalrisk-files",
+  "private_key_id": "62803d8180694531882473017f12a86e03e24f6e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8yLFWvZOt4v4P\nItkF4JNyj/4wkIkLXDAgF5V/gqXQu/p7Ww+UCwVkHDzByy3WJVYVzJNmLwie5NTX\nIQvsgvGBlGRckpNgksMmyyeL2wn/si3Nl+K7bnk3gEQUKokW3UKBAGDXURXeg8EC\n0jdsVRMnjFbF50GYKTWJeGzb9odfDAd6G3FBXk4+8V58rKym4T9Q2ORQSiQOGJS3\npoYrBEUjBwNF/8DiwiVcGWg+apFjnm+mpZ1F4J1dE11gU/gLuwmvysNtQoj+X48j\nNjiDBWsYK0RPjiZRC61puq1mjP7dOnNSSvEPxvD2rouLaMooA0VQ4XERbw7c0Sr0\nbLPJXkAHAgMBAAECggEAE7nkzeuBQuo1Id/CTZrpzU6+gNSZfVZksPXF6Uz9hpId\n2kXpms6MAanxr05Lu9Sq6hw2Srcfb3r5woDxfgUwtxmKYyHtxGmRerw/pZ19rfow\nTwtP5cXlZKdCddj7+ieki1Y+yEDwyA98W48bu3YoSjmf144SjJPBxFuRBGr+OjAZ\noYlDkSCBMPtOaWlbRhyB5JViaWgCtcwI129cOmUfdaTkoHqj4thcSZ8ZcT6O98C1\nFiCZETn5kxAqBF5eIBgCvQ/dYmK3VAE8qFe1bRy47OL38a5OO9N6dQe3JTbzXAUI\nyz1AEd27RsxTxLaBia2QLoXdjHg7ZjGlRWnWiNLoAQKBgQDiX3K1plbqenrvRwQf\nnrLnSZrke+PQ7KyVY1///ynFQw9izwa52ntHM6cOlIbvFcoXxTLUnOTIYBsEiLDB\nKzywAgbdzq4+xSK8vqKAOcx6je4TXHYP6FmqT6pjqC0oDXiDiu6Hk9jn5HrqKXrH\nqTGyyfSQJarlTGVfafBdzq361wKBgQDVfdcyPsO22iBThOtdzKzZLwt+rbrObW5w\n2Cfh6zRy6V/qbqBXRp9scGUTq2JuB9w8tZKDzo1fRGG6Kw/7HxFidgqvGvyZhhOG\nq5dkXhOhOj409nMBsZpzO3pM2VyHJiw5Vq+6Q8moASt1rhs76LiuL/hj0wbb3bC/\n6Z8tzhLuUQKBgQDeb2Wa4ojzPEjCB6kgnOM0a1n8+1Oe/oCTBiPVu1fDEqLyt3Tn\neKy8CSA1LnLsSR/cfZP14PjZf73slZgBJ8gpNsSifS0wVqtMhZHNp32qSv5OHgOQ\nnAJHXKKT7DP68EmkEAdUR03ShurUXs/bkwBXqyRZ4/lp+Mh/mexrcOP53wKBgCD6\ny5+Laph4ob3FLsbSs3Dpf5EWLWFuLj1oZuDTgMqvmo2QgVx6IG6T/klHlHEC7dbD\nBdsusVAiNCaaOGHGrtzS91uNg7ADskh/gWeT0Nx7LtjnqWR9lypt6bqtaUnHb9V7\nurG/fwthAuGu/64FiWH/LxPcqZaVbJR49ooQ54PBAoGBAMcdGNzGYYXkJSVveGM8\nteMQWVvbGQPNE3J2EgihOZ513UCaMng+VrCsGV0inwX4UvY23n4tnFIO/slrhP2c\ndF3gZPoK6HgSsiMk14fRnFSMu92nuHp9HUFM+E/+uxMPpSr9Wg62LRwXdkPqihnp\nIXbW8h6YkyRg4SU0h+BYLUPy\n-----END PRIVATE KEY-----\n",
+  "client_email": "vitalrisk-drive@vitalrisk-files.iam.gserviceaccount.com",
+  "client_id": "112527427010306707555",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vitalrisk-drive%40vitalrisk-files.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
