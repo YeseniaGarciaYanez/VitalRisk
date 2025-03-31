@@ -15,12 +15,11 @@
             <h2>VitalRisk</h2>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="mantenimiento.php"><i class="fas fa-tools"></i> Maintenance</a></li>
             <li><a href="historial.php"><i class="fas fa-history"></i> History</a></li>
             <li class="active"><a href="normativas.php"><i class="fas fa-file-alt"></i> Normativas</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a></li>
-        </ul>
+            <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
     </div>
 
     <!-- Main Content -->
@@ -31,16 +30,14 @@
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <h1>Cliente</h1>
+                <h1>Administrador</h1>
             </div>
             <div class="header-right">
                 <div class="notification">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
                 </div>
                 <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="User">
-                    <span>Usuario</span>
+                    <span>Usuario Administrador</span>
                 </div>
             </div>
         </div>
