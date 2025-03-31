@@ -41,43 +41,37 @@
             </div>
         </div>
 
-        
-
         <!-- Content -->
         <div class="content">
-        <div class="content">
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>CLUES</th>
-                <th>Clave</th>
-                <th>Hospital</th>
-            </tr>
-        </thead>
-        <tbody>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>CLUES</th>
+                        <th>Clave</th>
+                        <th>Hospital</th>
+                        <th>Estado</th>
+                        <th>Ver en Mapa</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <?php
-            // URL de la API
-            $url = "https://sheet2api.com/v1/OOb2tXvPROOB/ola?MUNICIPIO=TIJUANA";
+                <?php
+                    // URL de la API
+                    $url = "https://sheet2api.com/v1/OOb2tXvPROOB/ola";
 
-            // Obtener los datos desde la API
-            $response = file_get_contents($url);
-            $data = json_decode($response, true);
+                    // Obtener los datos desde la API
+                    $response = file_get_contents($url);
+                    $data = json_decode($response, true);
 
-            // Limitar los primeros 10 resultados
-            //$limit = 10;
-            //$data_limited = array_slice($data, 0, $limit);
-
-            // Array para almacenar nombres únicos
-            $hospitales_unicos = [];
-            ?>
-
+                    // Array para almacenar nombres únicos
+                    $hospitales_unicos = [];
+                ?>
 
                 <tbody>
                     <?php foreach ($data as $item): 
                         $hospital = $item['NOMBRE DE LA INSTITUCION'] ?? ''; 
-                        
+                        $estado = $item['ESTADO'] ?? 'Desconocido'; 
+
                         // Verificar si el hospital ya fue agregado
                         if (!in_array($hospital, $hospitales_unicos)) {
                             $hospitales_unicos[] = $hospital; // Agregar a la lista de únicos
@@ -86,6 +80,12 @@
                             <td><?php echo htmlspecialchars($item['CLUES'] ?? ''); ?></td>
                             <td><?php echo htmlspecialchars($item['CLAVE DE LA INSTITUCION'] ?? ''); ?></td>
                             <td><?php echo htmlspecialchars($hospital); ?></td>
+                            <td><?php echo htmlspecialchars($estado); ?></td>
+                            <td>
+                                <a href="mapa.php?estado=<?php echo urlencode($estado); ?>" class="btn-mapa">
+                                    <i class="fas fa-map-marked-alt"></i> Ver Mapa
+                                </a>
+                            </td>
                         </tr>
                     <?php 
                         } 
@@ -93,7 +93,11 @@
                 </tbody>
             </table>
 
-
+            <!-- Botón para ver el mapa con todos los hospitales -->
+            <div style="margin-top: 20px;">
+                <a href="mapa.php" class="btn-mapa-global">
+                    <i class="fas fa-map"></i> Ver Todos en el Mapa
+                </a>
             </div>
 
         </div>
