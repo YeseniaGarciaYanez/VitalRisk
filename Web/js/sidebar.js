@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const menus = {
         "tecnico": [
-            { "icon": "fas fa-home", "name": "Inicio", "url": "Dashboard.php" },
+            { "icon": "fas fa-home", "name": "Inicio", "url": "DashboardTec.php" },
             { "icon": "fas fa-hospital", "name": "Hospitales", "url": "hospital.php" },
             { "icon": "fas fa-tools", "name": "Mantenimiento", "submenu": [
                 { "name": "Preventivo", "url": "maintenance.php" },

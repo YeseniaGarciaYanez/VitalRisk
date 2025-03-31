@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Redirigir según el rol
             switch ($user['rol']) {
                 case 'admin':
-                    header('Location: dashboardAdmin.php');
+                    header('Location: pages/admin/dashboardAdmin.php');
                     break;
                 case 'tecnico':
-                    header('Location: web/tech/DashboardTec.php');
+                    header('Location: pages/tech/DashboardTec.php');
                     break;
                 case 'cliente':
-                    header('Location: web/cliente/DashboardCliente.php');
+                    header('Location: pages/cliente/DashboardCliente.php');
                     break;
                 default:
                     header('Location: index.php?error=Rol no reconocido');
