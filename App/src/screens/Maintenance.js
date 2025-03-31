@@ -12,17 +12,18 @@ const Maintenance = () => {
   const [date, setDate] = useState('');
   const [equipmentList, setEquipmentList] = useState([]);
 
-  // Cargar equipos desde la API
+  // Cargar equipos desde la API externa
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://sheet2api.com/v1/I4xIqLkaSRe4/equiposmedicos');
-        setEquipmentList(response.data);  // Guardamos la lista de equipos
-        if (response.data.length > 0) {
-          setEquipment(response.data[0]['Nombre del Equipo']); // Asignamos el primer equipo por defecto
+        console.log('Datos recibidos:', response.data);
+        
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setEquipmentList(response.data);
         }
       } catch (error) {
-        console.error(error);
+        console.error('Error al obtener los datos:', error);
         Alert.alert('Error', 'Failed to fetch equipment data.');
       }
     };
@@ -30,17 +31,35 @@ const Maintenance = () => {
     fetchData();
   }, []);
 
-  // Limitar y filtrar equipos (en este caso, los primeros 5 que contienen la palabra 'medico')
-  const limitedEquipmentList = equipmentList
-    //.filter(item => item['Nombre del Equipo'].toLowerCase().includes('Bomba '))  // Filtramos
-    .slice(0, 15);  // Limitar a los primeros 5
+  // Filtrar equipos (máximo 15)
+  const limitedEquipmentList = equipmentList.slice(0, 15);
 
-  const handleSubmit = () => {
+  // Enviar datos a la API (guardar en la base de datos)
+  const handleSubmit = async () => {
     if (!equipment || !problem || !date) {
       Alert.alert('Error', 'Please complete all fields.');
       return;
     }
-    Alert.alert('Success', 'Maintenance request submitted.');
+
+    try {
+      const response = await axios.post('https://tu-servidor.com/guardar_mantenimiento.php', {
+        equipo: equipment,
+        problema: problem,
+        fecha: date
+      });
+
+      if (response.data.success) {
+        Alert.alert('Success', 'Maintenance request submitted.');
+        setEquipment('');
+        setProblem('');
+        setDate('');
+      } else {
+        throw new Error(response.data.error || 'Error en la respuesta del servidor');
+      }
+    } catch (error) {
+      console.error('Error al enviar la solicitud:', error);
+      Alert.alert('Error', 'Failed to submit maintenance request.');
+    }
   };
 
   return (
@@ -54,16 +73,17 @@ const Maintenance = () => {
           style={styles.input}
           onValueChange={(itemValue) => setEquipment(itemValue)}
         >
+          <Picker.Item label="Selecciona un equipo" value="" color="#999" />
           {limitedEquipmentList.length > 0 ? (
             limitedEquipmentList.map((item, index) => (
-              
               <Picker.Item 
                 key={index} 
-                label=''
+                label={item['Nombre del Equipo']} 
+                value={item['Nombre del Equipo']} 
               />
             ))
           ) : (
-            <Picker.Item label="" value="" />
+            <Picker.Item label="No equipment available" value="" />
           )}
         </Picker>
         
@@ -87,7 +107,7 @@ const Maintenance = () => {
         />
 
         <TouchableOpacity 
-          style={({ pressed }) => [styles.button, pressed && styles.buttonPress]} 
+          style={styles.button} 
           onPress={handleSubmit}
         >
           <Text style={styles.buttonText}>Send</Text>
@@ -153,11 +173,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#23998E',
+    color: '#FFF',
     fontWeight: 'bold',
-  },
-  buttonPress: {
-    opacity: 0.8,
   },
 });
 
