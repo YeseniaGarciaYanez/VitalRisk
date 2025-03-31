@@ -18,7 +18,6 @@
             <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="mantenimiento.php"><i class="fas fa-tools"></i> Maintenance</a></li>
             <li><a href="historial.php"><i class="fas fa-history"></i> History</a></li>
-            <li class="active"><a href="normativas.php"><i class="fas fa-file-alt"></i> Normativas</a></li>
             <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
     </div>
 
@@ -44,7 +43,7 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Bienvenido!!!</h2>
+            <h2>Bienvenido al sistema VitalRisk!!!</h2>
             <p>Selecciona una opción del menú para continuar.</p>
         </div>
 
