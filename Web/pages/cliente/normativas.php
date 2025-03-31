@@ -32,11 +32,9 @@ $normativas_vigentes = array_filter($normativas, function($item) {
             <h2>VitalRisk</h2>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="mantenimiento.php"><i class="fas fa-tools"></i> Maintenance</a></li>
-            <li><a href="historial.php"><i class="fas fa-history"></i> History</a></li>
+            <li><a href="dashboardCliente.php"><i class="fas fa-home"></i> Dashboard</a></li>
             <li class="active"><a href="normativas.php"><i class="fas fa-file-alt"></i> Normativas</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a></li>
+            <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"> <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
     </div>
 
