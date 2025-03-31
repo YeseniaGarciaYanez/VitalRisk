@@ -11,7 +11,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-        <img src="../../images/logovital2.png" alt="Logo" style="border-radius: 50%;">
+        <img src="../../images/vitarisk.png" alt="Logo" style="border-radius: 50%;">
             <h2>VitalRisk</h2>
         </div>
         <ul class="sidebar-menu">
@@ -43,8 +43,8 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Bienvenido al sistema VitalRisk!!!</h2>
-            <p>Selecciona una opción del menú para continuar.</p>
+            <h2>¡Bienvenido al sistema VitalRisk!</h2>
+            <p>Seleccione una opción del menú para continuar</p>
         </div>
 
     <script>
