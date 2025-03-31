@@ -6,5 +6,4 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Puedes agregar más verificaciones de rol aquí si es necesario
 ?>

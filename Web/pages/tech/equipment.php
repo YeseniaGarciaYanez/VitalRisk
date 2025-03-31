@@ -10,6 +10,14 @@ $offset = ($page - 1) * $limit; // Calcular el inicio de los datos para esta pá
 $file = file_get_contents('https://sheet2api.com/v1/I4xIqLkaSRe4/equiposmedicos?ubicacion=Hospital%20General%20de%20Tijuana,%20Baja%20California');
 $data = json_decode($file, true);
 
+// Filtrar los equipos por búsqueda
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+if ($search) {
+    $data = array_filter($data, function($item) use ($search) {
+        return stripos($item['Marca'], $search) !== false || stripos($item['Categoría'], $search) !== false;
+    });
+}
+
 // Contar el total de registros
 $total_records = count($data);
 $total_pages = ceil($total_records / $limit);
@@ -28,7 +36,82 @@ $data_paginada = array_slice($data, $offset, $limit);
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/table.css">
     <link rel="stylesheet" href="../../css/pagination.css">
-   
+    <style>
+        /* Estilo para la barra de búsqueda centrada */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input[type="text"]:focus {
+            border-color: #5C6BC0;
+            box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            background-color: #5C6BC0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #3f51b5;
+        }
+
+        .reset-button {
+            padding: 10px 20px;
+            background-color: #5C6BC0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .reset-button:hover {
+            background-color: #3f51b5;
+        }
+
+        /* Estilo para el botón "Ver Todos" centrado en la parte inferior */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            padding: 10px 20px;
+            background-color: #5C6BC0;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #3f51b5;
+        }
+    </style>
 </head>
 <body>
 
@@ -64,9 +147,24 @@ $data_paginada = array_slice($data, $offset, $limit);
             </div>
         </div>
 
+        <!-- Barra de búsqueda centrada -->
+        <div class="search-container">
+            <form method="get" action="">
+                <input type="text" name="search" placeholder="Buscar por marca o categoría..." value="<?php echo htmlspecialchars($search); ?>">
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+            </form>
+        </div>
+
+        <!-- Botón para regresar a la vista principal -->
+        <?php if ($search): ?>
+            <div class="button-container">
+                <a href="equipment.php" class="reset-button">Ver Todos</a>
+            </div>
+        <?php endif; ?>
+
         <!-- Contenedor de la tabla -->
         <div class="table-container">
-            <table border="1">
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -98,7 +196,6 @@ $data_paginada = array_slice($data, $offset, $limit);
         <div class="pagination-container">
             <div class="pagination">
                 <?php if ($page > 1): ?>
-                    
                     <a href="?page=<?php echo ($page - 1); ?>">‹ </a>
                 <?php endif; ?>
 
@@ -108,7 +205,6 @@ $data_paginada = array_slice($data, $offset, $limit);
 
                 <?php if ($page < $total_pages): ?>
                     <a href="?page=<?php echo ($page + 1); ?>"> ›</a>
-            
                 <?php endif; ?>
             </div>
         </div>
