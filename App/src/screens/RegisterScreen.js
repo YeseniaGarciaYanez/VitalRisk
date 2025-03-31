@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { 
   View, Text, TextInput, TouchableOpacity, Alert, 
-  StyleSheet, Image
+  StyleSheet 
 } from 'react-native';
 import axios from 'axios';
 
-const LoginScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
   const [clues, setClues] = useState('');
   const [password, setPassword] = useState('');
-  const logo = require('../../Logo/logovital.png') 
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleLogin = async () => {
-    if (!clues || !password) {
-      Alert.alert('Error', 'Por favor, ingresa CLUES y contraseña.');
+  const handleRegister = async () => {
+    if (!clues || !password || !confirmPassword) {
+      Alert.alert('Error', 'Por favor, ingresa CLUES, contraseña y confirma la contraseña.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Las contraseñas no coinciden.');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost/VitalRisk/Web/pages/cliente/login.php', {
+      const response = await axios.post('http://localhost/VitalRisk/Web/pages/cliente/register.php', {
         clues,
         password,
       });
@@ -25,20 +30,21 @@ const LoginScreen = ({ navigation }) => {
       console.log('Respuesta del servidor:', response.data);
 
       if (response.data.success) {
-        Alert.alert('Éxito', 'Inicio de sesión exitoso');
-        navigation.navigate('HomeScreen');
+        Alert.alert('Éxito', 'Registro exitoso');
+        // Navegar a la pantalla de login después del registro
+        navigation.navigate('Login');
       } else {
-        Alert.alert('Error', response.data.message || 'Credenciales incorrectas.');
+        Alert.alert('Error', response.data.message || 'No se pudo registrar.');
       }
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
+      console.error('Error al registrar:', error);
       Alert.alert('Error', 'No se pudo conectar con el servidor.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={logo} />
+      <Text style={styles.title}>Registrarse</Text>
       
       <TextInput 
         style={styles.input}
@@ -55,14 +61,16 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={setPassword}
       />
       
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Iniciar Sesión</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerText}>
-          ¿No tienes una cuenta? <Text style={styles.registerLink}>Regístrate aquí</Text>
-        </Text>
+      <TextInput 
+        style={styles.input}
+        placeholder="Confirmar contraseña"
+        secureTextEntry
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+      />
+      
+      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+        <Text style={styles.buttonText}>Registrarse</Text>
       </TouchableOpacity>
     </View>
   );
@@ -80,11 +88,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-  },
-  image: {
-    width: 300,
-    height: 150,
-    marginBottom: 80,
   },
   input: {
     width: '100%',
@@ -106,15 +109,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  registerText: {
-    marginTop: 15,
-    fontSize: 14,
-    color: '#555',
-  },
-  registerLink: {
-    color: '#23998E',
-    fontWeight: 'bold',
-  },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

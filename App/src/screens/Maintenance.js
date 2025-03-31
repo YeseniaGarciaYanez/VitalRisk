@@ -42,11 +42,7 @@ const Maintenance = () => {
     }
 
     try {
-      const response = await axios.post('https://tu-servidor.com/guardar_mantenimiento.php', {
-        equipo: equipment,
-        problema: problem,
-        fecha: date
-      });
+   
 
       if (response.data.success) {
         Alert.alert('Success', 'Maintenance request submitted.');
@@ -121,7 +117,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    width: '85%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollContainer: {
     padding: 20,
