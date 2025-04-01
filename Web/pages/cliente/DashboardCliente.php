@@ -33,11 +33,8 @@
             </div>
             <div class="header-right">
                 <div class="notification">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
                 </div>
                 <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="User">
                     <span>Usuario</span>
                 </div>
             </div>
