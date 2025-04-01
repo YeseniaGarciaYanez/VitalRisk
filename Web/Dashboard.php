@@ -43,8 +43,8 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Bienvenido, Técnico</h2>
-            <p>Selecciona una opción del menú para continuar.</p>
+            <h2>"Bienvenido, Técnico. Tu experiencia mantiene la precisión y confiabilidad de cada equipo médico. ¡Gracias por tu trabajo!"</h2>
+            <p>Todo listo para optimizar el rendimiento de los equipos médicos. Selecciona una opción para comenzar.</p>
         </div>
     </div>
 
