@@ -1,21 +1,26 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Footer = () => {
+  const navigation = useNavigation(); // Permite navegar entre pantallas
+
   return (
     <View style={styles.footer}>
       <View style={styles.footerRow}>
-        <TouchableOpacity style={styles.footerButton}>
+        <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('HomeScreen')}>
           <MaterialIcons name="home" size={25} color="#7CBC9A" />
           <Text style={styles.footerText}>HOME</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>  
+
+        <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Maintenance')}>
           <FontAwesome name="wrench" size={25} color="#7CBC9A" />
           <Text style={styles.footerText}>MAINTENANCE</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
+
+        <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Profile')}>
           <FontAwesome name="user" size={25} color="#7CBC9A" />
           <Text style={styles.footerText}>PROFILE</Text>
         </TouchableOpacity>
@@ -42,7 +47,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     justifyContent: 'center',
-    
     alignItems: 'center',
   },
   footerText: {
