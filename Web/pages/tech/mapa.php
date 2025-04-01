@@ -10,6 +10,8 @@
 
     // Agrupar hospitales por entidad y municipio
     $hospitales_municipios = [];
+    // Para dropdown global de municipios
+    $municipiosGlobal = [];
     foreach ($data as $item) {
         $municipio = $item['MUNICIPIO'] ?? 'Desconocido';
         $entidad = $item['ENTIDAD'] ?? 'Desconocido';
@@ -18,12 +20,18 @@
             $hospitales_municipios[$entidad][$municipio] = [];
         }
         $hospitales_municipios[$entidad][$municipio][] = $item;
+
+        if (!in_array($municipio, $municipiosGlobal)) {
+            $municipiosGlobal[] = $municipio;
+        }
     }
+    sort($municipiosGlobal);
 
     // Generar arreglo de municipios por entidad para el dropdown
     $municipiosPorEntidad = [];
     foreach ($hospitales_municipios as $entidad => $municipios) {
         $municipiosPorEntidad[$entidad] = array_values(array_unique(array_keys($municipios)));
+        sort($municipiosPorEntidad[$entidad]);
     }
 ?>
 <!DOCTYPE html>
@@ -51,7 +59,7 @@
     }
     body {
         background-color: var(--content-bg);
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
     }
@@ -74,35 +82,48 @@
     }
     /* Contenedor principal */
     .container {
-        width: 90%;
+        max-width: 1200px;
         margin: 20px auto;
         padding: 20px;
         background: white;
         border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     h2 {
         margin-top: 0;
+        color: var(--accent-dark);
+    }
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: flex-end;
+        margin-bottom: 20px;
+    }
+    form > div {
+        flex: 1;
+        min-width: 200px;
     }
     label {
-        font-size: 1rem;
         display: block;
-        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
     }
     select, input {
-        padding: 10px;
-        margin: 5px 0 15px;
         width: 100%;
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
+        font-size: 1rem;
     }
     button {
+        padding: 10px 20px;
         background: var(--primary-color);
-        color: white;
-        padding: 10px 15px;
+        color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-size: 1rem;
     }
     button:hover {
         background: var(--hover-color);
@@ -112,7 +133,7 @@
         width: 100%;
         height: 600px;
         border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
@@ -127,28 +148,39 @@
   <div class="container">
       <h2>Mapa de Hospitales</h2>
       <form id="filtros" method="GET" action="mapa.php">
-        <label for="entidad">Filtrar por Entidad:</label>
-        <select id="entidad" name="entidad" onchange="actualizarMunicipios()">
-            <option value="">Todas</option>
-            <?php foreach ($hospitales_municipios as $entidad => $muni): ?>
-                <option value="<?php echo htmlspecialchars($entidad); ?>" <?php echo ($entidad === $entidad_seleccionada) ? 'selected' : ''; ?>>
-                    <?php echo htmlspecialchars($entidad); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <label for="municipio">Filtrar por Municipio:</label>
-        <select id="municipio" name="municipio">
-            <option value="">Todos</option>
-            <?php
-              if ($entidad_seleccionada && isset($municipiosPorEntidad[$entidad_seleccionada])) {
-                  foreach ($municipiosPorEntidad[$entidad_seleccionada] as $muni) {
-                      $selected = ($muni === $municipio_seleccionado) ? 'selected' : '';
-                      echo "<option value=\"" . htmlspecialchars($muni) . "\" $selected>" . htmlspecialchars($muni) . "</option>";
-                  }
-              }
-            ?>
-        </select>
-        <button type="submit">Aplicar Filtros</button>
+        <div>
+          <label for="entidad">Filtrar por Entidad:</label>
+          <select id="entidad" name="entidad" onchange="actualizarMunicipios()">
+              <option value="">Todas</option>
+              <?php foreach ($hospitales_municipios as $entidad => $datos): ?>
+                  <option value="<?php echo htmlspecialchars($entidad); ?>" <?php echo ($entidad === $entidad_seleccionada) ? 'selected' : ''; ?>>
+                      <?php echo htmlspecialchars($entidad); ?>
+                  </option>
+              <?php endforeach; ?>
+          </select>
+        </div>
+        <div>
+          <label for="municipio">Filtrar por Municipio:</label>
+          <select id="municipio" name="municipio">
+              <option value="">Todos</option>
+              <?php
+                if ($entidad_seleccionada && isset($municipiosPorEntidad[$entidad_seleccionada])) {
+                    foreach ($municipiosPorEntidad[$entidad_seleccionada] as $muni) {
+                        $selected = ($muni === $municipio_seleccionado) ? 'selected' : '';
+                        echo "<option value=\"" . htmlspecialchars($muni) . "\" $selected>" . htmlspecialchars($muni) . "</option>";
+                    }
+                } else {
+                    foreach ($municipiosGlobal as $muni) {
+                        $selected = ($muni === $municipio_seleccionado) ? 'selected' : '';
+                        echo "<option value=\"" . htmlspecialchars($muni) . "\" $selected>" . htmlspecialchars($muni) . "</option>";
+                    }
+                }
+              ?>
+          </select>
+        </div>
+        <div>
+          <button type="submit">Aplicar Filtros</button>
+        </div>
       </form>
       <div id="map"></div>
   </div>
@@ -237,33 +269,32 @@
         var entidadFiltro = urlParams.get('entidad') || "";
         var municipioFiltro = urlParams.get('municipio') || "";
 
+        var contador = 0;
+        var limiteInicial = (!entidadFiltro && !municipioFiltro) ? 20 : Infinity;
+
         // Si se filtra por entidad, usar esa; de lo contrario, recorrer todas
         var entidades = entidadFiltro ? [entidadFiltro] : Object.keys(hospitales);
         entidades.forEach(function(entidad) {
-            // Si la entidad no está en el grupo, continuar
             if (!hospitales[entidad]) return;
             // Recorrer cada municipio de la entidad
             var municipios = municipioFiltro ? [municipioFiltro] : Object.keys(hospitales[entidad]);
             municipios.forEach(function(municipio) {
-                // Obtener el arreglo de hospitales en esta entidad y municipio
                 var listaHospitales = hospitales[entidad][municipio];
                 if (!listaHospitales) return;
-                // Convertir a mayúsculas para búsqueda de coordenadas
                 var entidadKey = entidad.toUpperCase();
                 var keyMunicipio = entidadKey + "_" + municipio.toUpperCase();
-                // Coordenada base: buscar en municipios, si no, en entidad; si tampoco, fallback
                 var baseCoords = coordenadasMunicipios[keyMunicipio] || coordenadasEntidades[entidadKey] || [23.6345, -102.5528];
-                // Iterar cada hospital y crear marcador con un pequeño desfase
                 listaHospitales.forEach(function(hospital) {
+                    if (contador >= limiteInicial) return;
                     var lat = baseCoords[0] + randomOffset();
                     var lng = baseCoords[1] + randomOffset();
-                    // Puedes personalizar el contenido del popup con más detalles del hospital
                     var popupContent = `<b>${hospital["NOMBRE DE LA INSTITUCION"]}</b><br>
                                         CLUES: ${hospital["CLUES"]}<br>
                                         Entidad: ${hospital["ENTIDAD"]}<br>
                                         Municipio: ${hospital["MUNICIPIO"]}`;
                     var marker = L.marker([lat, lng]).addTo(map).bindPopup(popupContent);
                     marcadores.push(marker);
+                    contador++;
                 });
             });
         });
@@ -274,16 +305,20 @@
         var entidadSelect = document.getElementById("entidad");
         var municipioSelect = document.getElementById("municipio");
         var entidad = entidadSelect.value;
-        // Limpiar municipios
         municipioSelect.innerHTML = "<option value=''>Todos</option>";
         if (entidad && municipiosPorEntidad[entidad]) {
             municipiosPorEntidad[entidad].forEach(function(muni) {
                 municipioSelect.innerHTML += `<option value="${muni}">${muni}</option>`;
             });
+        } else {
+            // Si no hay entidad seleccionada, usar la lista global
+            <?php foreach ($municipiosGlobal as $muni): ?>
+                municipioSelect.innerHTML += `<option value="<?php echo htmlspecialchars($muni); ?>"><?php echo htmlspecialchars($muni); ?></option>`;
+            <?php endforeach; ?>
         }
     }
 
-    // Al cargar la página, mostrar los marcadores individuales por hospital
+    // Al cargar la página, mostrar los marcadores (limitados si no hay filtro)
     mostrarHospitales();
   </script>
 </body>
