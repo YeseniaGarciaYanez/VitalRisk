@@ -1,0 +1,611 @@
+{
+    "database": "vitaldb",
+    "estructura": {
+        "tables": {
+            "administrador": [
+                {
+                    "COLUMN_NAME": "idAdmin",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "idUsuario",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                }
+            ],
+            "archivos": [
+                {
+                    "COLUMN_NAME": "idArchivo",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "idTecnico",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fecha_generacion",
+                    "COLUMN_TYPE": "datetime",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "tipo",
+                    "COLUMN_TYPE": "varchar(50)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "ruta",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fecha",
+                    "COLUMN_TYPE": "datetime",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                }
+            ],
+            "certificado": [
+                {
+                    "COLUMN_NAME": "idCertificado",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "fecha_emision",
+                    "COLUMN_TYPE": "date",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fecha_expiracion",
+                    "COLUMN_TYPE": "date",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "tipo_certificado",
+                    "COLUMN_TYPE": "varchar(100)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "descripcion",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "idEquipo",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "clues",
+                    "COLUMN_TYPE": "varchar(20)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "cliente": [
+                {
+                    "COLUMN_NAME": "idCliente",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "clues",
+                    "COLUMN_TYPE": "varchar(20)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "UNI",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "idUsuario",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "nombreInstitucion",
+                    "COLUMN_TYPE": "varchar(255)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "equipos": [
+                {
+                    "COLUMN_NAME": "idEquipo",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "nombre",
+                    "COLUMN_TYPE": "varchar(255)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "modelo",
+                    "COLUMN_TYPE": "varchar(100)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "ubicacion",
+                    "COLUMN_TYPE": "varchar(255)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "descripcion",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "clues",
+                    "COLUMN_TYPE": "varchar(20)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "estado",
+                    "COLUMN_TYPE": "varchar(50)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fechaAdquisicion",
+                    "COLUMN_TYPE": "datetime",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "piezas": [
+                {
+                    "COLUMN_NAME": "id_piezas",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "nombre",
+                    "COLUMN_TYPE": "varchar(255)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "UNI",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "descripcion",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "programacion": [
+                {
+                    "COLUMN_NAME": "id_programacion",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "id_tecnico",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "id_tarea",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "id_equipo",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "notas",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "prioridad",
+                    "COLUMN_TYPE": "varchar(50)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "estado",
+                    "COLUMN_TYPE": "varchar(50)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fecha_programacion",
+                    "COLUMN_TYPE": "datetime",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                }
+            ],
+            "registromantenimiento": [
+                {
+                    "COLUMN_NAME": "id_registro",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "id_Programacion",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "piezas_Reemplazadas",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fecha_Realizacion",
+                    "COLUMN_TYPE": "datetime",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "tiempo_empleado",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "observaciones",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "reporte": [
+                {
+                    "COLUMN_NAME": "idReporte",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "fecha_generacion",
+                    "COLUMN_TYPE": "date",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "descripcion",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "conclusiones",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "recomendaciones",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "idEquipo",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "idTecnico",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                }
+            ],
+            "tareas": [
+                {
+                    "COLUMN_NAME": "id_tarea",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "frecuencia_dias",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "nombre",
+                    "COLUMN_TYPE": "varchar(255)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "UNI",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "descripcion",
+                    "COLUMN_TYPE": "text",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "tarea_tecnico": [
+                {
+                    "COLUMN_NAME": "id",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "id_tarea",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "idTecnico",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "fecha_asignacion",
+                    "COLUMN_TYPE": "datetime",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "estado",
+                    "COLUMN_TYPE": "varchar(50)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "tecnico": [
+                {
+                    "COLUMN_NAME": "idTecnico",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "idUsuario",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "MUL",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "especialidad",
+                    "COLUMN_TYPE": "varchar(255)",
+                    "IS_NULLABLE": "YES",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ],
+            "usuario": [
+                {
+                    "COLUMN_NAME": "idUsuario",
+                    "COLUMN_TYPE": "int(11)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "PRI",
+                    "EXTRA": "auto_increment"
+                },
+                {
+                    "COLUMN_NAME": "username",
+                    "COLUMN_TYPE": "varchar(100)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "UNI",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "email",
+                    "COLUMN_TYPE": "varchar(150)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "UNI",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "usuario",
+                    "COLUMN_TYPE": "varchar(100)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                },
+                {
+                    "COLUMN_NAME": "rol",
+                    "COLUMN_TYPE": "varchar(50)",
+                    "IS_NULLABLE": "NO",
+                    "COLUMN_KEY": "",
+                    "EXTRA": ""
+                }
+            ]
+        },
+        "triggers": {
+            "certificado": [
+                {
+                    "TRIGGER_NAME": "trg_certificado_validacion",
+                    "EVENT_MANIPULATION": "INSERT",
+                    "ACTION_TIMING": "BEFORE",
+                    "ACTION_STATEMENT": "BEGIN\r\n    IF NEW.fecha_expiracion <= NEW.fecha_emision THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La fecha de expiraci\u00f3n debe ser mayor a la fecha de emisi\u00f3n.';\r\n    END IF;\r\nEND"
+                }
+            ],
+            "registromantenimiento": [
+                {
+                    "TRIGGER_NAME": "trg_actualizar_proximo_mant",
+                    "EVENT_MANIPULATION": "UPDATE",
+                    "ACTION_TIMING": "AFTER",
+                    "ACTION_STATEMENT": "BEGIN\r\n    DECLARE v_frecuencia INT;\r\n    DECLARE v_nueva_fecha DATETIME;\r\n    \r\n    SELECT t.frecuencia_dias INTO v_frecuencia\r\n    FROM TAREAS t\r\n    JOIN PROGRAMACION p ON p.id_tarea = t.id_tarea\r\n    WHERE p.id_programacion = NEW.id_Programacion;\r\n    \r\n    SET v_nueva_fecha = fn_proxima_fecha(NEW.fecha_Realizacion, v_frecuencia);\r\n    \r\n    UPDATE PROGRAMACION\r\n    SET fecha_programacion = v_nueva_fecha\r\n    WHERE id_programacion = NEW.id_Programacion;\r\nEND"
+                }
+            ],
+            "tareas": [
+                {
+                    "TRIGGER_NAME": "trg_prevenir_eliminacion_tareas",
+                    "EVENT_MANIPULATION": "DELETE",
+                    "ACTION_TIMING": "BEFORE",
+                    "ACTION_STATEMENT": "BEGIN\r\n    DECLARE v_count INT;\r\n\r\n    \r\n    SELECT COUNT(*) INTO v_count FROM PROGRAMACION WHERE id_tarea = OLD.id_tarea;\r\n    \r\n    IF v_count > 0 THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se puede eliminar esta tarea, tiene mantenimientos en curso.';\r\n    END IF;\r\nEND"
+                }
+            ]
+        },
+        "routines": {
+            "FUNCTION": [
+                {
+                    "ROUTINE_NAME": "fn_proxima_fecha",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    RETURN DATE_ADD(p_fecha, INTERVAL p_frecuencia DAY);\r\nEND"
+                }
+            ],
+            "PROCEDURE": [
+                {
+                    "ROUTINE_NAME": "sp_actualizar_estado_mantenimiento",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_rol VARCHAR(50);\r\n\r\n    \r\n    SELECT rol INTO v_rol \r\n    FROM USUARIO \r\n    WHERE username = p_username;\r\n\r\n    \r\n    IF v_rol NOT IN ('admin', 'tecnico') THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Operaci\u00f3n permitida solo para administradores o t\u00e9cnicos.';\r\n    END IF;\r\n    \r\n    \r\n    IF p_nuevo_estado NOT IN ('pendiente', 'en_proceso', 'realizado') THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Estado no permitido.';\r\n    END IF;\r\n    \r\n    UPDATE PROGRAMACION\r\n    SET estado = p_nuevo_estado\r\n    WHERE id_programacion = p_id_programacion;\r\n    \r\n    SELECT 'Estado actualizado exitosamente.' AS mensaje;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_agendar_mantenimiento",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    IF EXISTS (\r\n        SELECT 1 FROM PROGRAMACION \r\n        WHERE id_equipo = p_id_equipo \r\n          AND DATE(fecha_programacion) = DATE(p_fecha_programacion)\r\n    ) THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El equipo ya tiene un mantenimiento agendado para esa fecha.';\r\n    ELSE\r\n        INSERT INTO PROGRAMACION (id_tecnico, id_tarea, id_equipo, fecha_programacion, notas, prioridad)\r\n        VALUES (p_id_tecnico, p_id_tarea, p_id_equipo, p_fecha_programacion, p_notas, p_prioridad);\r\n    END IF;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_asignar_tecnico_a_tarea",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_especialidad VARCHAR(255);\r\n    DECLARE v_id_tecnico INT;\r\n\r\n    SELECT t.nombre INTO v_especialidad\r\n    FROM TAREAS t\r\n    WHERE t.id_tarea = p_id_tarea;\r\n\r\n    SELECT idTecnico INTO v_id_tecnico\r\n    FROM TECNICO\r\n    WHERE especialidad = v_especialidad\r\n    LIMIT 1;  \r\n    IF v_id_tecnico IS NOT NULL THEN\r\n        INSERT INTO TAREA_TECNICO (id_tarea, idTecnico, estado)\r\n        VALUES (p_id_tarea, v_id_tecnico, 'pendiente');\r\n    ELSE\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se encontr\u00f3 un t\u00e9cnico con la especialidad necesaria para esta tarea.';\r\n    END IF;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_consultar_reportes_cliente",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    SELECT r.idReporte,\r\n           r.fecha_generacion,\r\n           r.descripcion,\r\n           r.conclusiones,\r\n           r.recomendaciones,\r\n           e.nombre AS equipo\r\n    FROM REPORTE r\r\n    JOIN EQUIPOS e ON r.idEquipo = e.idEquipo\r\n    JOIN CLIENTE c ON e.clues = c.clues\r\n    WHERE c.clues = p_clues\r\n    ORDER BY r.fecha_generacion DESC;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_cancelar_tarea",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_rol VARCHAR(50);\r\n    DECLARE v_id_tecnico INT;\r\n\r\n    \r\n    SELECT rol INTO v_rol FROM USUARIO WHERE username = p_username;\r\n    \r\n    \r\n    IF v_rol = 'tecnico' THEN\r\n        \r\n        SELECT id_tecnico INTO v_id_tecnico FROM PROGRAMACION WHERE id_programacion = p_id_programacion;\r\n        \r\n        \r\n        IF (SELECT idTecnico FROM TECNICO WHERE idUsuario = (SELECT idUsuario FROM USUARIO WHERE username = p_username)) <> v_id_tecnico THEN\r\n            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No tienes permisos para cancelar esta tarea.';\r\n        END IF;\r\n    ELSEIF v_rol <> 'admin' THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Solo administradores o t\u00e9cnicos pueden cancelar tareas.';\r\n    END IF;\r\n\r\n    \r\n    UPDATE PROGRAMACION SET estado = 'cancelada' WHERE id_programacion = p_id_programacion;\r\n\r\n    SELECT 'Tarea cancelada exitosamente.' AS mensaje;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_crear_tarea",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_rol_admin VARCHAR(50);\r\n\r\n    \r\n    SELECT rol INTO v_rol_admin FROM USUARIO WHERE username = p_admin_username;\r\n    \r\n    IF v_rol_admin <> 'admin' THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Solo los administradores pueden crear tareas.';\r\n    END IF;\r\n\r\n    \r\n    INSERT INTO TAREAS (nombre, descripcion, frecuencia_dias) \r\n    VALUES (p_nombre, p_descripcion, p_frecuencia_dias);\r\n\r\n    SELECT 'Tarea creada exitosamente.' AS mensaje;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_eliminar_usuario",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_rol_admin VARCHAR(50);\r\n    DECLARE v_count INT;\r\n\r\n    \r\n    SELECT rol INTO v_rol_admin FROM USUARIO WHERE username = p_admin_username;\r\n    \r\n    IF v_rol_admin <> 'admin' THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Solo los administradores pueden eliminar usuarios.';\r\n    END IF;\r\n\r\n    \r\n    SELECT COUNT(*) INTO v_count FROM PROGRAMACION WHERE id_tecnico = p_id_usuario;\r\n    \r\n    IF v_count > 0 THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se puede eliminar el usuario porque tiene tareas activas.';\r\n    END IF;\r\n\r\n    \r\n    DELETE FROM USUARIO WHERE idUsuario = p_id_usuario;\r\n\r\n    SELECT 'Usuario eliminado correctamente.' AS mensaje;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_insertar_usuario_custom",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_idUsuario INT;\r\n    START TRANSACTION;\r\n    \r\n    \r\n    INSERT INTO USUARIO (username, email, usuario, rol)\r\n    VALUES (p_username, p_email, p_nombre, p_rol);\r\n    \r\n    SET v_idUsuario = LAST_INSERT_ID();\r\n    \r\n    \r\n    IF p_rol = 'admin' THEN\r\n        INSERT INTO ADMINISTRADOR (idUsuario) VALUES (v_idUsuario);\r\n    ELSEIF p_rol = 'tecnico' THEN\r\n        INSERT INTO TECNICO (idUsuario, especialidad) VALUES (v_idUsuario, p_especialidad);\r\n    ELSE\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Rol no reconocido para inserci\u00f3n manual';\r\n    END IF;\r\n    COMMIT;\r\n    SELECT \r\n        v_idUsuario AS idUsuario, \r\n        CONCAT('uservital', LPAD(v_idUsuario, 4, '0')) AS id_formatted;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_notificar_tecnicos",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    SELECT \r\n        P.id_programacion, \r\n        E.nombre AS equipo, \r\n        T.nombre AS tarea, \r\n        CONCAT(U.nombre, ' ', U.apellido) AS tecnico,\r\n        P.fecha_programacion\r\n    FROM PROGRAMACION P\r\n    INNER JOIN EQUIPOS E ON P.id_equipo = E.idEquipo\r\n    INNER JOIN TAREAS T ON P.id_tarea = T.id_tarea\r\n    INNER JOIN TECNICO TE ON P.id_tecnico = TE.idTecnico\r\n    INNER JOIN USUARIO U ON TE.idUsuario = U.idUsuario\r\n    WHERE P.fecha_programacion BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 3 DAY)\r\n    ORDER BY P.fecha_programacion ASC;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_registrar_usuario",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    DECLARE v_rol_solicitante VARCHAR(50);\r\n    \r\n    \r\n    SELECT rol INTO v_rol_solicitante FROM USUARIO WHERE username = p_solicitante;\r\n    \r\n    IF v_rol_solicitante <> 'admin' THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Solo los administradores pueden registrar nuevos usuarios.';\r\n    END IF;\r\n\r\n    \r\n    INSERT INTO USUARIO (username, email, password, rol) \r\n    VALUES (p_username, p_email, SHA2(p_password, 256), p_rol);\r\n    \r\n    SELECT 'Usuario registrado exitosamente.' AS mensaje;\r\nEND"
+                },
+                {
+                    "ROUTINE_NAME": "sp_solicitar_mantenimiento",
+                    "ROUTINE_DEFINITION": "BEGIN\r\n    \r\n    DECLARE v_cliente_count INT;\r\n    DECLARE v_equipo_clues VARCHAR(20);\r\n    DECLARE v_especialidad VARCHAR(255);\r\n    DECLARE v_id_tecnico INT;\r\n\r\n    \r\n    SELECT COUNT(*) INTO v_cliente_count\r\n    FROM CLIENTE\r\n    WHERE clues = p_clues;\r\n    IF v_cliente_count = 0 THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cliente no autorizado o no existe.';\r\n    END IF;\r\n\r\n    \r\n    SELECT clues INTO v_equipo_clues\r\n    FROM EQUIPOS\r\n    WHERE idEquipo = p_id_equipo;\r\n    IF v_equipo_clues != p_clues THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El equipo no pertenece al cliente.';\r\n    END IF;\r\n\r\n    \r\n    SELECT nombre INTO v_especialidad\r\n    FROM TAREAS\r\n    WHERE id_tarea = p_id_tarea;\r\n\r\n    SELECT idTecnico INTO v_id_tecnico\r\n    FROM TECNICO\r\n    WHERE especialidad = v_especialidad\r\n    LIMIT 1;\r\n\r\n    IF v_id_tecnico IS NULL THEN\r\n        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se encontr\u00f3 un t\u00e9cnico especializado para la tarea.';\r\n    END IF;\r\n\r\n    \r\n    CALL sp_agendar_mantenimiento(v_id_tecnico, p_id_tarea, p_id_equipo, p_fecha_programacion, p_notas, 'normal');\r\n\r\n    \r\n    SELECT 'Mantenimiento solicitado exitosamente.' AS mensaje;\r\nEND"
+                }
+            ]
+        }
+    },
+    "apis": [
+        {
+            "nombre": "hospitales",
+            "url": "https:\/\/sheet2api.com\/v1\/OOb2tXvPROOB\/ola",
+            "rol_permitido": "admin"
+        },
+        {
+            "nombre": "empresas_vendedoras",
+            "url": "https:\/\/sheet2api.com\/v1\/I4xIqLkaSRe4\/empresas-vendedores-de-equipos-medicos",
+            "rol_permitido": "admin"
+        },
+        {
+            "nombre": "normativas",
+            "url": "https:\/\/sheet2api.com\/v1\/OOb2tXvPROOB\/normativas",
+            "rol_permitido": "tecnico"
+        },
+        {
+            "nombre": "equiposmedicos",
+            "url": "https:\/\/sheet2api.com\/v1\/I4xIqLkaSRe4\/equiposmedicos",
+            "rol_permitido": "tecnico"
+        }
+    ]
+}

@@ -35,24 +35,48 @@ function getTables($pdo) {
     return $tables;
 }
 
-// Función para obtener triggers
-function getTriggers($pdo) {
+// Función para obtener triggers y agruparlos por tabla
+function getTriggersByTable($pdo) {
     $sql = "SELECT TRIGGER_NAME, EVENT_MANIPULATION, EVENT_OBJECT_TABLE, ACTION_TIMING, ACTION_STATEMENT 
             FROM INFORMATION_SCHEMA.TRIGGERS 
             WHERE TRIGGER_SCHEMA = 'vitaldb'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $triggers = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $table = $row['EVENT_OBJECT_TABLE'];
+        if (!isset($triggers[$table])) {
+            $triggers[$table] = [];
+        }
+        $triggers[$table][] = [
+            'TRIGGER_NAME'      => $row['TRIGGER_NAME'],
+            'EVENT_MANIPULATION'=> $row['EVENT_MANIPULATION'],
+            'ACTION_TIMING'     => $row['ACTION_TIMING'],
+            'ACTION_STATEMENT'  => $row['ACTION_STATEMENT']
+        ];
+    }
+    return $triggers;
 }
 
-// Función para obtener procedimientos y funciones
-function getRoutines($pdo) {
+// Función para obtener procedimientos y funciones y agruparlos por tipo
+function getRoutinesByType($pdo) {
     $sql = "SELECT ROUTINE_NAME, ROUTINE_TYPE, ROUTINE_DEFINITION 
             FROM INFORMATION_SCHEMA.ROUTINES 
             WHERE ROUTINE_SCHEMA = 'vitaldb'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $routines = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $type = $row['ROUTINE_TYPE'];
+        if (!isset($routines[$type])) {
+            $routines[$type] = [];
+        }
+        $routines[$type][] = [
+            'ROUTINE_NAME' => $row['ROUTINE_NAME'],
+            'ROUTINE_DEFINITION' => $row['ROUTINE_DEFINITION']
+        ];
+    }
+    return $routines;
 }
 
 // Se puede definir manualmente la parte de las APIs si no cambia
@@ -79,20 +103,22 @@ $apis = [
     ]
 ];
 
-// Recopilar la información en un arreglo
+// Recopilar la información en un arreglo con niveles estructurados
 $schema = [
-    "database" => "vitaldb",
-    "tables"    => getTables($pdo),
-    "apis"      => $apis,
-    "triggers"  => getTriggers($pdo),
-    "routines"  => getRoutines($pdo)
+    "database"  => "vitaldb",
+    "estructura" => [
+        "tables"   => getTables($pdo),
+        "triggers" => getTriggersByTable($pdo),
+        "routines" => getRoutinesByType($pdo)
+    ],
+    "apis"      => $apis
 ];
 
 // Convertir a JSON y guardarlo en un archivo
 $jsonSchema = json_encode($schema, JSON_PRETTY_PRINT);
 file_put_contents('schema.json', $jsonSchema);
 
-// También se puede retornar el JSON en el endpoint
+// También se retorna el JSON en el endpoint
 header('Content-Type: application/json');
 echo $jsonSchema;
 ?>
