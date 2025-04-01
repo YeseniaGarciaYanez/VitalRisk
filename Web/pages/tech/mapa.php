@@ -7,6 +7,10 @@
     $url = "https://sheet2api.com/v1/OOb2tXvPROOB/ola";
     $response = file_get_contents($url);
     $data = json_decode($response, true);
+    // Asegurarse de que $data sea el arreglo correcto
+    if (isset($data['data'])) {
+        $data = $data['data'];
+    }
 
     // Agrupar hospitales por entidad y municipio
     $hospitales_municipios = [];
@@ -194,10 +198,10 @@
 
     // Datos de hospitales agrupados por entidad y municipio
     var hospitales = <?php echo json_encode($hospitales_municipios); ?>;
-    // Objeto con municipios por entidad para actualizar el dropdown
+    // Datos para dropdown de municipios por entidad
     var municipiosPorEntidad = <?php echo json_encode($municipiosPorEntidad); ?>;
 
-    // Diccionario de coordenadas para entidades (clave en mayúsculas)
+    // Diccionario de coordenadas para entidades (en mayúsculas)
     var coordenadasEntidades = {
       "AGUASCALIENTES": [21.8853, -102.2916],
       "BAJA CALIFORNIA": [32.5149, -115.4523],
@@ -233,7 +237,7 @@
       "ZACATECAS": [22.7709, -102.5833]
     };
 
-    // Diccionario de coordenadas para algunos municipios (clave: "ENTIDAD_MUNICIPIO" en mayúsculas)
+    // Diccionario de coordenadas para algunos municipios (clave: "ENTIDAD_MUNICIPIO")
     var coordenadasMunicipios = {
       "BAJA CALIFORNIA_MEXICALI": [32.6633, -115.4689],
       "BAJA CALIFORNIA_TIJUANA": [32.5149, -117.0382],
@@ -242,12 +246,11 @@
       "BAJA CALIFORNIA_SAN QUINTIN": [30.2833, -115.0333],
       "BAJA CALIFORNIA_SAN FELIPE": [30.0667, -113.3333],
       "BAJA CALIFORNIA_TECATE": [32.2678, -116.6067]
-      // Agrega más municipios con coordenadas precisas si lo requieres
+      // Agrega más municipios según necesites
     };
 
     var marcadores = [];
 
-    // Función para limpiar marcadores existentes
     function limpiarMarcadores() {
         marcadores.forEach(function(marker) {
             map.removeLayer(marker);
@@ -255,34 +258,32 @@
         marcadores = [];
     }
 
-    // Función para generar un pequeño desfase aleatorio en grados
     function randomOffset() {
-      // Rango de offset: ±0.02 grados (aproximadamente ±2km, ajusta según necesidad)
       return (Math.random() - 0.5) * 0.04;
     }
 
-    // Función para mostrar un marcador por cada hospital
     function mostrarHospitales() {
         limpiarMarcadores();
-        // Obtener filtros de la URL (pasados por GET) o de los dropdowns
         var urlParams = new URLSearchParams(window.location.search);
         var entidadFiltro = urlParams.get('entidad') || "";
         var municipioFiltro = urlParams.get('municipio') || "";
-
         var contador = 0;
+        // Si no hay filtro, limitamos a 20 marcadores para evitar saturar el mapa
         var limiteInicial = (!entidadFiltro && !municipioFiltro) ? 20 : Infinity;
-
-        // Si se filtra por entidad, usar esa; de lo contrario, recorrer todas
         var entidades = entidadFiltro ? [entidadFiltro] : Object.keys(hospitales);
         entidades.forEach(function(entidad) {
             if (!hospitales[entidad]) return;
-            // Recorrer cada municipio de la entidad
             var municipios = municipioFiltro ? [municipioFiltro] : Object.keys(hospitales[entidad]);
             municipios.forEach(function(municipio) {
                 var listaHospitales = hospitales[entidad][municipio];
                 if (!listaHospitales) return;
                 var entidadKey = entidad.toUpperCase();
-                var keyMunicipio = entidadKey + "_" + municipio.toUpperCase();
+                // Normalizamos el nombre del municipio
+                var municipioAdjusted = municipio.toUpperCase();
+                if(municipioAdjusted === "ROSARITO") {
+                    municipioAdjusted = "PLAYAS DE ROSARITO";
+                }
+                var keyMunicipio = entidadKey + "_" + municipioAdjusted;
                 var baseCoords = coordenadasMunicipios[keyMunicipio] || coordenadasEntidades[entidadKey] || [23.6345, -102.5528];
                 listaHospitales.forEach(function(hospital) {
                     if (contador >= limiteInicial) return;
@@ -300,7 +301,6 @@
         });
     }
 
-    // Actualizar el dropdown de municipios según la entidad seleccionada
     function actualizarMunicipios() {
         var entidadSelect = document.getElementById("entidad");
         var municipioSelect = document.getElementById("municipio");
@@ -311,14 +311,13 @@
                 municipioSelect.innerHTML += `<option value="${muni}">${muni}</option>`;
             });
         } else {
-            // Si no hay entidad seleccionada, usar la lista global
             <?php foreach ($municipiosGlobal as $muni): ?>
                 municipioSelect.innerHTML += `<option value="<?php echo htmlspecialchars($muni); ?>"><?php echo htmlspecialchars($muni); ?></option>`;
             <?php endforeach; ?>
         }
     }
 
-    // Al cargar la página, mostrar los marcadores (limitados si no hay filtro)
+    // Mostrar los marcadores al cargar la página
     mostrarHospitales();
   </script>
 </body>

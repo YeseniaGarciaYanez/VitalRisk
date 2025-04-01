@@ -22,7 +22,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
+    <div class="main-content"> 
         <!-- Header -->
         <div class="header">
             <div class="header-left">
