@@ -11,14 +11,15 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-        <img src="../../images/vita" alt="Logo" style="border-radius: 50%;">
-            <h2>VitalRisk</h2>
+            <img src="../../images/vitarisk.png" alt="Logo" style="border-radius: 50%;">
+            <h2></h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="mantenimiento.php"><i class="fas fa-tools"></i> Maintenance</a></li>
             <li><a href="historial.php"><i class="fas fa-history"></i> History</a></li>
             <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
     </div>
 
     <!-- Main Content -->
@@ -40,25 +41,15 @@
             </div>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <h2>¡Bienvenido al sistema VitalRisk!</h2>
-            <p>Seleccione una opción del menú para continuar</p>
-        </div>
+    
+    </div>
+    <img src="../../images/admin.jpg" alt="admin" style="border-radius: 10%; width: 450px; height: auto; display: block; margin: 100px auto 0;">
+
 
     <script>
         // Menú móvil
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
-        });
-
-        // Cambiar ítem activo en el menú
-        const menuItems = document.querySelectorAll('.sidebar-menu li');
-        menuItems.forEach(item => {
-            item.addEventListener('click', function() {
-                menuItems.forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-            });
         });
     </script>
 </body>
