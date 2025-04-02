@@ -33,7 +33,6 @@
             </div>
             <div class="header-right">
                 <div class="notification">
-                    <i class="fas fa-bell"></i>
                 </div>
                 <div class="user-profile">
                     <span>Usuario Administrador</span>
