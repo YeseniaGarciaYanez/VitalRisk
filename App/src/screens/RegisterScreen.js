@@ -22,7 +22,7 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost/VitalRisk/Web/pages/cliente/register.php', {
+      const response = await axios.post('http://172.18.3.13/VitalRisk/Web/pages/cliente/register.php', {
         clues,
         password,
       });
