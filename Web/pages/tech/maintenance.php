@@ -1,22 +1,3 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// URL de tu API, asegúrate que la ruta sea correcta
-$apiUrl = 'api_endpoints.php';
-
-// Obtener la respuesta de la API
-$response = file_get_contents($apiUrl);
-if ($response === false) {
-    die("Error: No se pudo conectar con la API en $apiUrl");
-}
-
-// Decodificar el JSON
-$data = json_decode($response, true);
-if (json_last_error() !== JSON_ERROR_NONE) {
-    die("Error al decodificar el JSON: " . json_last_error_msg());
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -62,29 +43,29 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 
         <!-- Content -->
         <div class="content">
-            <h2>Listado de Mantenimientos</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Hospital</th>
-                        <th>Equipment</th>
-                        <th>Date</th>
-                        <th>Priority</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data as $item): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($item['hospital']); ?></td>
-                        <td><?php echo htmlspecialchars($item['equipment']); ?></td>
-                        <td><?php echo htmlspecialchars($item['date']); ?></td>
-                        <td><?php echo htmlspecialchars($item['priority']); ?></td>
-                        <td><?php echo htmlspecialchars($item['notes']); ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <div class="content">
+    <h2>Listado de Mantenimientos</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hospital</th>
+                <th>Equipment</th>
+                <th>Date</th>
+                <th>Priority</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+            </tr>
+            <tr>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+
         </div>
     </div>
 

@@ -28,7 +28,7 @@
             <div class="header-left">
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
-                </div>
+                </div>  
                 <h1>Administrador</h1>
             </div>
             <div class="header-right">
