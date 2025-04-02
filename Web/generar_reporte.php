@@ -1,6 +1,7 @@
 <?php
 // Incluye el autoload generado por Composer
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
+
 
 use Dompdf\Dompdf;
 
