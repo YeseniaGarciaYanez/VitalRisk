@@ -208,7 +208,6 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
             <th>Hospital</th>
             <th>Entidad</th>
             <th>Municipio</th>
-            <th>Ver en Mapa</th>
           </tr>
         </thead>
         <tbody>
@@ -223,11 +222,6 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
             <td><?php echo htmlspecialchars($nombreHospital); ?></td>
             <td><?php echo htmlspecialchars($estado); ?></td>
             <td><?php echo htmlspecialchars($ciudad); ?></td>
-            <td>
-              <a href="mapa.php?estado=<?php echo urlencode($estado); ?>&ciudad=<?php echo urlencode($ciudad); ?>" class="btn-mapa">
-                <i class="fas fa-map-marked-alt"></i> Ver Mapa
-              </a>
-            </td>
           </tr>
           <?php endforeach; ?>
         </tbody>
