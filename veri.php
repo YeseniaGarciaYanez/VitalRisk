@@ -1,19 +1,10 @@
 <?php
-require 'vendor/autoload.php';
-
-use Google\Client;
-
-$client = new Client();
-$client->setAuthConfig('credenciales.json');
-$client->addScope('https://www.googleapis.com/auth/drive.file');
+require_once __DIR__ . '/vendor/autoload.php';
 
 try {
-    $token = $client->fetchAccessTokenWithAssertion();
-    if (isset($token['error'])) {
-        throw new Exception("Error: " . $token['error_description']);
-    }
-    echo "✅ Autenticación exitosa. Token generado correctamente.";
+    $client = new Google_Client();
+    echo "Google_Client se ha instanciado correctamente.";
 } catch (Exception $e) {
-    echo "❌ Error en la autenticación: " . $e->getMessage();
+    echo "Error al instanciar Google_Client: " . $e->getMessage();
 }
 ?>
