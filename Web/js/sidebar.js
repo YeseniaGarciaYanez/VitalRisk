@@ -7,17 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
             { "icon": "fas fa-hospital", "name": "Hospitales", "url": "hospital.php" },
             { "icon": "fas fa-tools", "name": "Mantenimiento", "submenu": [
                 { "name": "Preventivo", "url": "maintenance.php" },
-                { "name": "Reportes", "url": "corrective.html" }
+               
             ]},
             { "icon": "fas fa-laptop-medical", "name": "Equipos", "url": "equipment.php" },
             { "icon": "fas fa-file", "name": "Archivos", "submenu": [
                 { "name": "Subidos", "url": "https://drive.google.com/drive/folders/1k3gWuIPc31SIB2A0FGoBuh_SX_AAwbyJ?usp=drive_link", "target": "_blank" },
-                { "name": "Compartidos", "url": "https://drive.google.com/drive/shared-with-me", "target": "_blank" }
+                
             ]},
-            { "icon": "fas fa-folder", "name": "Reportes", "submenu": [
-                { "name": "Diario", "url": "daily-reports.html" },
-                { "name": "Mensual", "url": "monthly-reports.html" }
-            ]}
+         
         ]
     };
 
