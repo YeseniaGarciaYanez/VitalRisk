@@ -108,7 +108,7 @@ $data_paginada = array_slice($data, $offset, $limit);
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="../../images/vitarisk.png" alt="Logo">
+            <img src="../../logo/vitarisk.png" alt="Logo">
         </div>
         <ul class="sidebar-menu" id="sidebar-menu">
             <!-- Menú generado dinámicamente -->

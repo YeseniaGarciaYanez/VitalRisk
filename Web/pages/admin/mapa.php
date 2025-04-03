@@ -144,7 +144,7 @@
 <body>
   <div class="sidebar">
         <div class="sidebar-header">
-            <img src="../../images/vitarisk.png" alt="Logo" style="border-radius: 50%;">
+            <img src="../../logo/vitarisk.png" alt="Logo" style="border-radius: 50%;">
             <h2></h2>
         </div>
         <ul class="sidebar-menu">

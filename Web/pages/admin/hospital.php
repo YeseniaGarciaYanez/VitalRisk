@@ -146,7 +146,7 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="sidebar-header">
-      <img src="../../images/vitarisk.png" alt="Logo">
+      <img src="../../logo/vitarisk.png" alt="Logo">
     </div>
     <ul class="sidebar-menu">
             <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
