@@ -7,7 +7,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit; // Calcular el inicio de los datos para esta página
 
 // Obtener los datos de la API
-$file = file_get_contents('https://sheet2api.com/v1/I4xIqLkaSRe4/equiposmedicos?ubicacion=Hospital%20General%20de%20Tijuana,%20Baja%20California');
+$file = file_get_contents('https://sheet2api.com/v1/vwwvP8i7SGyW/equiposmedicos');
 $data = json_decode($file, true);
 
 // Filtrar los equipos por búsqueda
@@ -20,7 +20,7 @@ if ($search) {
 
 // Contar el total de registros
 $total_records = count($data);
-$total_pages = ceil($total_records / $limit);
+$total_paginas = ceil($total_records / $limit);
 
 // Limitar los datos a los que corresponden a la página actual
 $data_paginada = array_slice($data, $offset, $limit);
@@ -45,7 +45,6 @@ $data_paginada = array_slice($data, $offset, $limit);
             gap: 10px;
             margin: 20px 0;
         }
-
         .search-container input[type="text"] {
             padding: 10px;
             font-size: 14px;
@@ -54,12 +53,10 @@ $data_paginada = array_slice($data, $offset, $limit);
             width: 300px;
             transition: all 0.3s ease;
         }
-
         .search-container input[type="text"]:focus {
             border-color: #5C6BC0;
             box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
         }
-
         .search-container button {
             padding: 10px 20px;
             background-color: #5C6BC0;
@@ -70,11 +67,9 @@ $data_paginada = array_slice($data, $offset, $limit);
             font-size: 14px;
             transition: background-color 0.3s ease;
         }
-
         .search-container button:hover {
             background-color: #3f51b5;
         }
-
         .reset-button {
             padding: 10px 20px;
             background-color: #5C6BC0;
@@ -86,18 +81,15 @@ $data_paginada = array_slice($data, $offset, $limit);
             font-size: 14px;
             transition: background-color 0.3s ease;
         }
-
         .reset-button:hover {
             background-color: #3f51b5;
         }
-
         /* Estilo para el botón "Ver Todos" centrado en la parte inferior */
         .button-container {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
-
         .button-container a {
             padding: 10px 20px;
             background-color: #5C6BC0;
@@ -107,16 +99,12 @@ $data_paginada = array_slice($data, $offset, $limit);
             font-size: 14px;
             transition: background-color 0.3s ease;
         }
-
         .button-container a:hover {
             background-color: #3f51b5;
         }
     </style>
 </head>
 <body>
-
-        
-
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
@@ -194,19 +182,36 @@ $data_paginada = array_slice($data, $offset, $limit);
             </table>
         </div>
 
-        <!-- Contenedor fijo de paginación -->
+        <!-- Sección de paginación -->
+        <?php
+        // Definir el máximo de botones a mostrar
+        $max_botones = 6;
+
+        // Asegurarse de que la página actual esté dentro de los límites
+        $total_paginas = ceil($total_records / $limit);
+        $page = max(1, min($page, $total_paginas));
+
+        // Calcular el rango de botones a mostrar
+        $inicio_rango = max(1, $page - floor($max_botones / 2));
+        $fin_rango = $inicio_rango + $max_botones - 1;
+        if ($fin_rango > $total_paginas) {
+            $fin_rango = $total_paginas;
+            $inicio_rango = max(1, $fin_rango - $max_botones + 1);
+        }
+        ?>
+
         <div class="pagination-container">
             <div class="pagination">
                 <?php if ($page > 1): ?>
-                    <a href="?page=<?php echo ($page - 1); ?>">‹ </a>
+                    <a href="?page=<?php echo ($page - 1); ?>&search=<?php echo urlencode($search); ?>">‹</a>
                 <?php endif; ?>
 
-                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                    <a href="?page=<?php echo $i; ?>" class="<?php echo ($page == $i) ? 'active' : ''; ?>"><?php echo $i; ?></a>
+                <?php for ($i = $inicio_rango; $i <= $fin_rango; $i++): ?>
+                    <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>" class="<?php echo ($page == $i) ? 'active' : ''; ?>"><?php echo $i; ?></a>
                 <?php endfor; ?>
 
-                <?php if ($page < $total_pages): ?>
-                    <a href="?page=<?php echo ($page + 1); ?>"> ›</a>
+                <?php if ($page < $total_paginas): ?>
+                    <a href="?page=<?php echo ($page + 1); ?>&search=<?php echo urlencode($search); ?>">›</a>
                 <?php endif; ?>
             </div>
         </div>
