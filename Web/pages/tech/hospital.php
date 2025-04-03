@@ -5,6 +5,7 @@ function getFieldValue($item, $keys) {
         if (isset($item[$key])) {
             return $item[$key];
         }
+
     }
     return '';
 }
@@ -254,3 +255,5 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
   <script src="../../js/sidebar.js"></script>
 </body>
 </html>
+
+
