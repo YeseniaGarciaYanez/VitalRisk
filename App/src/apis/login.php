@@ -9,9 +9,6 @@ include 'config.php';
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
-// DEBUG: Mostrar lo que se recibe
-file_put_contents("debug.txt", $json); // Guarda la entrada en un archivo para depuración
-
 if (!isset($data['clues']) || !isset($data['password'])) {
     echo json_encode(["success" => false, "message" => "Datos incompletos", "received" => $json]);
     exit;

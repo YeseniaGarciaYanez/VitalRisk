@@ -7,11 +7,14 @@ import axios from 'axios';
 
 const RegisterScreen = ({ navigation }) => {
   const [clues, setClues] = useState('');
+  const [hospital, setHospital] = useState('');
+  const [entidad, setEntidad] = useState('');
+  const [municipio, setMunicipio] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = async () => {
-    if (!clues || !password || !confirmPassword) {
+    if (!clues || !hospital || !entidad || !municipio || !password || !confirmPassword) {
       Alert.alert('Error', 'Por favor, ingresa CLUES, contraseña y confirma la contraseña.');
       return;
     }
@@ -21,9 +24,13 @@ const RegisterScreen = ({ navigation }) => {
       return;
     }
 
+    //------------------------------------------------------------------------------------------------------------
     try {
-      const response = await axios.post('http://localhost/VitalRisk/Web/pages/cliente/register.php', {
+      const response = await axios.post('http://192.168.100.8/VitalRisk/App/src/apis/register.php', {
         clues,
+        hospital,
+        entidad,
+        municipio,
         password,
       });
 
@@ -52,6 +59,28 @@ const RegisterScreen = ({ navigation }) => {
         value={clues}
         onChangeText={setClues}
       />
+
+      <TextInput 
+        style={styles.input}
+        placeholder="Ingrese nombre de institución"
+        value={hospital}
+        onChangeText={setHospital}
+      />
+      
+      <TextInput 
+        style={styles.input}
+        placeholder="Ingrese entidad"
+        value={entidad}
+        onChangeText={setEntidad}
+      />
+
+      <TextInput 
+        style={styles.input}
+        placeholder="Ingrese municipio"
+        value={municipio}
+        onChangeText={setMunicipio}
+      />
+
       
       <TextInput 
         style={styles.input}

@@ -9,15 +9,16 @@ include 'config.php';
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
-// DEBUG: Mostrar lo que se recibe
-file_put_contents("debug.txt", $json); // Guarda la entrada en un archivo para depuración
 
-if (!isset($data['clues']) || !isset($data['password'])) {
+if (!isset($data['clues']) || !isset($data['hospital']) || !isset($data['entidad']) || !isset($data['municipio']) || !isset($data['password'])) {
     echo json_encode(["success" => false, "message" => "Datos incompletos", "received" => $json]);
     exit;
 }
 
 $clues = $data['clues'];
+$hospital = $data['hospital'];
+$entidad = $data['entidad'];
+$municipio = $data['municipio'];
 $password = $data['password'];
 
 // Validar si el CLUES ya existe en la base de datos
@@ -36,8 +37,11 @@ try {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar el nuevo usuario en la base de datos
-    $stmt = $pdo->prepare("INSERT INTO hospitales (clues, password_hash) VALUES (:clues, :password_hash)");
+    $stmt = $pdo->prepare("INSERT INTO hospitales (clues, nombre, entidad, municipio, password_hash) VALUES (:clues, :nombre, :entidad, :municipio, :password_hash)");
     $stmt->bindParam(':clues', $clues);
+    $stmt->bindParam(':nombre', $hospital);
+    $stmt->bindParam(':entidad', $entidad);
+    $stmt->bindParam(':municipio', $municipio);
     $stmt->bindParam(':password_hash', $hashedPassword);
 
     if ($stmt->execute()) {

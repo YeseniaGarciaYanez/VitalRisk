@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { 
   View, Text, TextInput, TouchableOpacity, Alert, 
-  StyleSheet, Image
+  StyleSheet, Image 
 } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';  // Importamos AsyncStorage
 
 const LoginScreen = ({ navigation }) => {
   const [clues, setClues] = useState('');
@@ -17,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost/VitalRisk/Web/pages/cliente/login.php', {
+      const response = await axios.post('http://192.168.100.8/VitalRisk/App/src/apis/login.php', {
         clues,
         password,
       });
@@ -25,6 +26,9 @@ const LoginScreen = ({ navigation }) => {
       console.log('Respuesta del servidor:', response.data);
 
       if (response.data.success) {
+        // Guardamos el CLUES en AsyncStorage si el login es exitoso
+        await AsyncStorage.setItem('clues', clues);
+        
         Alert.alert('Éxito', 'Inicio de sesión exitoso');
         navigation.navigate('HomeScreen');
       } else {
