@@ -36,8 +36,13 @@ $data_paginada = array_slice($data, $offset, $limit);
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/table.css">
     <link rel="stylesheet" href="../../css/pagination.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* Estilo para la barra de búsqueda centrada */
+        * {
+      font-family: 'Montserrat', sans-serif;
+    }
         .search-container {
             display: flex;
             justify-content: center;

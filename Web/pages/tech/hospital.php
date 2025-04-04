@@ -77,7 +77,15 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../../css/dashboard.css">
   <link rel="stylesheet" href="../../css/table.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
   <style>
+
+* {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
       :root {
           --sidebar-bg: #1D5E69;
           --sidebar-text: #F3E1B6;
