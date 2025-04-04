@@ -54,10 +54,17 @@ function getPriorityStyle($prioridad) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Mantenimientos</title>
+    <!-- Carga de la tipografía Montserrat -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/table.css">
     <style>
+        /* Aplica la fuente a todo el documento */
+        body {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
         /* Estilos generales */
         .table-container {
             width: 100%;
@@ -179,9 +186,8 @@ function getPriorityStyle($prioridad) {
                             </td>
                             <td><?php echo htmlspecialchars($mantenimiento['notas']); ?></td>
                             <td>
-                                <!-- Botón para eliminar el mantenimiento (debe conectarse a la lógica de eliminación) -->
+                                <!-- Botón para eliminar el mantenimiento -->
                                 <form method="post" action="eliminar_mantenimiento.php" onsubmit="return confirm('¿Estás seguro de eliminar este mantenimiento?');">
-                                    <!-- Se podría enviar un ID para identificar el registro -->
                                     <input type="hidden" name="equipo" value="<?php echo htmlspecialchars($mantenimiento['equipo']); ?>">
                                     <button type="submit" class="btn btn-eliminar">
                                         <i class="fas fa-trash"></i> Eliminar
