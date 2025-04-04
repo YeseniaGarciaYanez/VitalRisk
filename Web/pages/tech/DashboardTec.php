@@ -24,9 +24,10 @@
       bottom: 20px;
       width: 100%;
       text-align: center;
+      z-index: 1000;
     }
     .logout-btn button {
-      background-color: var(--primary-color);
+      background-color: var(--primary-color, #007BFF);
       color: white;
       border: none;
       padding: 10px 20px;
@@ -35,7 +36,7 @@
       font-size: 1rem;
     }
     .logout-btn button:hover {
-      background-color: var(--hover-color);
+      background-color: var(--hover-color, #0056b3);
     }
   </style>
 </head>
@@ -82,7 +83,9 @@
 
   <script>
     document.getElementById('logoutBtn').addEventListener('click', function() {
-      window.location.href = "logout.php";
+      if (confirm('¿Estás seguro de cerrar sesión?')) {
+        window.location.replace("../../logout.php");
+      }
     });
   </script>
   <script src="../../js/sidebar.js"></script>

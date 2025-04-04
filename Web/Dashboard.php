@@ -63,7 +63,6 @@
                 { "icon": "fas fa-tools", "name": "Maintenance" },
                 { "icon": "fas fa-box-open", "name": "Inventory" },
                 { "icon": "fas fa-file", "name": "Files" },
-                { "icon": "fas fa-folder", "name": "Reports" }
             ]
         };
         
