@@ -11,8 +11,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="../../logo/vitarisk.png" alt="Logo" style="border-radius: 50%;">
-            <h2></h2>
+            <img src="../../logo/vitarisk.png" alt="Logo">
         </div>
         <ul class="sidebar-menu">
             <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
@@ -23,34 +22,27 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content"> 
+    <div class="main-content">
         <!-- Header -->
         <div class="header">
             <div class="header-left">
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
-                </div>  
-                <h1>Administrador</h1>
+                </div>
+                <h1>Maintenance</h1>
             </div>
             <div class="header-right">
                 <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
                 </div>
                 <div class="user-profile">
-                    <span>Usuario Administrador</span>
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <span>Usuario Técnico</span>
                 </div>
             </div>
         </div>
 
-    
-    </div>
-    <img src="../../images/admin.jpg" alt="admin" style="display: block; margin: 50px auto 0; height: 450px; width: 450px; height: auto; border-radius: 10%;">
-
-
-    <script>
-        // Menú móvil
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        });
-    </script>
+    <script src="../../js/sidebar.js"></script>
 </body>
 </html>

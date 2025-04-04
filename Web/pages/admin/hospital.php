@@ -5,7 +5,6 @@ function getFieldValue($item, $keys) {
         if (isset($item[$key])) {
             return $item[$key];
         }
-
     }
     return '';
 }
@@ -149,8 +148,11 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
     <div class="sidebar-header">
       <img src="../../logo/vitarisk.png" alt="Logo">
     </div>
-    <ul class="sidebar-menu" id="sidebar-menu">
-      <!-- Menú generado dinámicamente -->
+    <ul class="sidebar-menu">
+            <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="equipment.php"><i class="fas fa-tools"></i> Equipamiento</a></li>
+            <li><a href="hospital.php"><i class="fas fa-history"></i> Hospital</a></li>
+            <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
     </ul>
   </div>
 
@@ -166,12 +168,9 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
       </div>
       <div class="header-right">
         <div class="notification">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">5</span>
         </div>
         <div class="user-profile">
-          <img src="https://via.placeholder.com/40" alt="User">
-          <span>Usuario Técnico</span>
+          <span>Usuario Administrador</span>
         </div>
       </div>
     </div>
@@ -255,5 +254,3 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
   <script src="../../js/sidebar.js"></script>
 </body>
 </html>
-
-
