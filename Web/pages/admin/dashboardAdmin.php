@@ -6,6 +6,17 @@
     <title>Dashboard con Sidebar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../css/dashboard.css">
+
+    <style>
+            .content img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10%;
+      width: 450px;
+    }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
