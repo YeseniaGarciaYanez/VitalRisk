@@ -62,8 +62,8 @@
 
         <!-- Content -->
         <div class="content">
-      <h2>Bienvenido, Cliente</h2>
-      <p>Tu experiencia mantiene la precisión y confiabilidad de cada equipo médico. ¡Gracias por tu trabajo!</p>
+      <h2>Bienvenido a Vitalrisk</h2>
+      <p>Con nuestro sistema, tus equipos médicos estarán siempre listos para salvar vidas. ¡Estamos contigo!</p>
       <div class="cliente-img">
         <img src="../../images/cliente.png" alt="Cliente" class="img-cliente">
     </div>
