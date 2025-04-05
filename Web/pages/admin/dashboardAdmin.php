@@ -14,7 +14,7 @@
       max-width: 100%;
       height: auto;
       border-radius: 10%;
-      width: 450px;
+      width: 500px;
     }
     </style>
 </head>
@@ -46,16 +46,13 @@
             <div class="header-right">
                 <div class="notification">
                 </div>
-                <div class="user-profile">
-                    <span>Usuario Administrador</span>
-                </div>
             </div>
         </div>
 
         <div class="content">
       <h2>Bienvenido, Administrador</h2>
       <p>La gestión inteligente de equipos médicos comienza contigo.</p>
-      <img src="../../images/tecnico.png" alt="Técnico">
+      <img src="../../images/admin.png" alt="Técnico">
     </div>
   </div>
 
