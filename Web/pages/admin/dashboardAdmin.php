@@ -41,13 +41,14 @@
             </div>
         </div>
 
-    
+        <div class="content">
+      <h2>Bienvenido, Administrador</h2>
+      <p>La gestión inteligente de equipos médicos comienza contigo.</p>
+      <img src="../../images/tecnico.png" alt="Técnico">
     </div>
-    <img src="../../images/admin.jpg" alt="admin" style="display: block; margin: 50px auto 0; height: 450px; width: 450px; height: auto; border-radius: 10%;">
+  </div>
 
-
-    <script>
-        // Menú móvil
+    <script>        // Menú móvil
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
         });
