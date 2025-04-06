@@ -67,7 +67,6 @@
       </div>
       <div class="header-right">
         <div class="user-profile">
-          <img src="https://via.placeholder.com/40" alt="User">
           <span>Usuario Técnico</span>
         </div>
       </div>
