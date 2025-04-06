@@ -19,25 +19,7 @@
       border-radius: 10%;
       width: 450px;
     }
-    .logout-btn {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      z-index: 1000;
-    }
-    .logout-btn button {
-      background-color: var(--primary-color, #007BFF);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .logout-btn button:hover {
-      background-color: var(--hover-color, #0056b3);
-    }
+
   </style>
 </head>
 <body>
@@ -47,11 +29,15 @@
     <div class="sidebar-header">
       <img src="../../logo/vitarisk.png" alt="Logo">
     </div>
-    <ul class="sidebar-menu" id="sidebar-menu">
-      <!-- Menú generado dinámicamente -->
-    </ul>
-    <div class="logout-btn">
-      <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+    <ul class="sidebar-menu">
+    <li><a href="DashboardTec.php"><i class="fas fa-home"></i> Dashboard</a></li>
+    <li><a href="equipment.php"><i class="fas fa-tools"></i> Equipamiento</a></li>
+    <li><a href="hospital.php"><i class="fas fa-history"></i> Hospitales</a></li>
+    <li><a href="maintenance.php"><i class="fas fa-calendar-alt"></i> Mantenimiento</a></li>
+    <li><a href="crear_reporte.php"><i class="fas fa-file-alt"></i> Generar reportes</a></li>
+    <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+</ul>
+
     </div>
   </div>
 
@@ -80,14 +66,6 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-      if (confirm('¿Estás seguro de cerrar sesión?')) {
-        window.location.replace("../../logout.php");
-      }
-    });
-  </script>
-  <script src="../../js/sidebar.js"></script>
 
 </body>
 </html>

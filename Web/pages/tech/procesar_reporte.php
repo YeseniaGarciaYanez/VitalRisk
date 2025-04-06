@@ -31,7 +31,8 @@ ob_start();
     
     <!-- Importar la tipografía Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -111,7 +112,18 @@ ob_start();
 </head>
 <body>
     <!-- Logo -->
-    <img src="../../logo/logovital2.png" class="logo" alt="VitalRisk">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="../../logo/vitarisk.png" alt="Logo" style="border-radius: 50%;">
+            <h2></h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboardAdmin.php"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="equipment.php"><i class="fas fa-tools"></i> Equipamiento</a></li>
+            <li><a href="hospital.php"><i class="fas fa-history"></i> Hospital</a></li>
+            <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </div>
     
     <h1>Reporte de Mantenimiento</h1>
     <p><strong>Fecha de reporte:</strong> <?= $fecha ?></p>
