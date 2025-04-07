@@ -35,6 +35,8 @@
     <li><a href="hospital.php"><i class="fas fa-history"></i> Hospitales</a></li>
     <li><a href="maintenance.php"><i class="fas fa-calendar-alt"></i> Mantenimiento</a></li>
     <li><a href="crear_reporte.php"><i class="fas fa-file-alt"></i> Generar reportes</a></li>
+    <li><a href="https://drive.google.com/drive/folders/1k3gWuIPc31SIB2A0FGoBuh_SX_AAwbyJ?usp=sharing" target="_blank">
+    <i class="fas fa-folder-open"></i> Archivos</a>
     <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
 </ul>
 

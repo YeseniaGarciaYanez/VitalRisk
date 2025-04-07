@@ -22,42 +22,10 @@
       display: flex;
       min-height: 100vh;
     }
-    /* Contenedor principal con sidebar y contenido */
+    /* Contenedor principal sin sidebar */
     .wrapper {
       display: flex;
       flex: 1;
-    }
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background-color: #1D5e69;
-      padding: 20px;
-      color: #fff;
-    }
-    .sidebar-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .sidebar-header img {
-      width: 200px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-    .sidebar-menu {
-      list-style: none;
-    }
-    .sidebar-menu li {
-      margin: 15px 0;
-    }
-    .sidebar-menu a {
-      color: #F3E1B6;
-      text-decoration: none;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-    }
-    .sidebar-menu a i {
-      margin-right: 10px;
     }
     /* Contenido principal */
     .main-content {
@@ -70,7 +38,7 @@
       background-color: #fff;
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
     header {
       text-align: center;
@@ -150,10 +118,6 @@
       .wrapper {
         flex-direction: column;
       }
-      .sidebar {
-        width: 100%;
-        text-align: center;
-      }
       .main-content {
         padding: 20px;
       }
@@ -165,27 +129,25 @@
         margin-bottom: 5px;
       }
     }
+    /* Ocultar elementos con la clase no-print al imprimir */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="../../logo/vitarisk.png" alt="Logo">
-      </div>
-      <ul class="sidebar-menu">
-        <li><a href="DashboardTec.php"><i class="fas fa-home"></i> Dashboard</a></li>
-        <li><a href="equipment.php"><i class="fas fa-tools"></i> Equipamiento</a></li>
-        <li><a href="hospital.php"><i class="fas fa-history"></i> Hospital</a></li>
-        <li?><a href="maintenance.php"><i class="fas fa-calendar-alt"></i> Mantenimiento</a></li>
-        <li><a href="crear_reporte.php"><i class="fas fa-file-alt"></i> Generar reportes</a></li>
-        <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-      </ul>
-    </aside>
-    <!-- Contenido principal -->
+    <!-- Contenido principal sin sidebar -->
     <main class="main-content">
       <div class="container">
+        <!-- Botón para ir al inicio del Técnico (no se imprimirá) -->
+        <div class="no-print" style="margin-bottom: 20px;">
+          <a href="DashboardTec.php" class="button" style="background-color: #1D5e69;">
+            <i class="fas fa-home"></i>
+          </a>
+        </div>
         <header>
           <img src="../../logo/logovital2.png" alt="VitalRisk">
           <h2>Formulario de Reporte de Mantenimiento</h2>
