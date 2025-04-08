@@ -26,7 +26,7 @@ const RegisterScreen = ({ navigation }) => {
 
     //------------------------------------------------------------------------------------------------------------
     try {
-      const response = await axios.post('http://192.168.100.8/VitalRisk/App/src/apis/register.php', {
+      const response = await axios.post('http://192.168.0.101/VitalRisk/App/src/apis/register.php', {
         clues,
         hospital,
         entidad,

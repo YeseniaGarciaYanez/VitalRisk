@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.post('http://192.168.100.8/VitalRisk/App/src/apis/login.php', {
+      const response = await axios.post('http://192.168.0.101/VitalRisk/App/src/apis/login.php', {
         clues,
         password,
       });
