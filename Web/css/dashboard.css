@@ -23,13 +23,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Monserrat';
 }
 
 body {
     display: flex;
     min-height: 100vh;
     background-color: var(--content-bg);
+    font-family: 'Montserrat';
 }
 
 /* Sidebar */

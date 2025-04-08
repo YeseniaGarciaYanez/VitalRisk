@@ -5,7 +5,6 @@ function getFieldValue($item, $keys) {
         if (isset($item[$key])) {
             return $item[$key];
         }
-
     }
     return '';
 }
@@ -36,7 +35,7 @@ sort($ciudadesDisponibles);
 $busqueda = isset($_GET['busqueda']) ? strtolower(trim($_GET['busqueda'])) : '';
 $filtroCiudad = isset($_GET['ciudad']) ? $_GET['ciudad'] : '';
 $pagina = isset($_GET['pagina']) ? max(1, intval($_GET['pagina'])) : 1;
-$limite = 30;
+$limite = 15; // Cambiado a 15 hospitales por página
 $inicio = ($pagina - 1) * $limite;
 
 // Aplicar filtros y evitar duplicados (por nombre)
@@ -48,9 +47,9 @@ foreach ($items as $item) {
     $ciudad = getFieldValue($item, ['MUNICIPIO', 'municipio']);
     
     // Evitar duplicados por nombre
-    if (in_array($nombreHospital, $hospitales_unicos)) {
-        continue;
-    }
+    //if (in_array($nombreHospital, $hospitales_unicos)) {
+      //  continue;
+    //}
     // Filtrar según búsqueda y ciudad
     if ($busqueda && strpos(strtolower($nombreHospital), $busqueda) === false) {
         continue;
@@ -65,6 +64,8 @@ foreach ($items as $item) {
 $total_hospitales = count($hospitales_filtrados);
 $total_paginas = ceil($total_hospitales / $limite);
 $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -76,7 +77,15 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../../css/dashboard.css">
   <link rel="stylesheet" href="../../css/table.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
   <style>
+
+* {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
       :root {
           --sidebar-bg: #1D5E69;
           --sidebar-text: #F3E1B6;
@@ -234,14 +243,39 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
         </tbody>
       </table>
 
-      <!-- Paginación -->
-      <div class="pagination">
-        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-          <a href="hospital.php?pagina=<?php echo $i; ?>&busqueda=<?php echo urlencode($busqueda); ?>&ciudad=<?php echo urlencode($filtroCiudad); ?>" class="<?php echo ($pagina == $i) ? 'active' : ''; ?>">
-            <?php echo $i; ?>
-          </a>
-        <?php endfor; ?>
-      </div>
+<!-- Paginación mejorada -->
+<div class="pagination">
+  <?php
+    $max_links = 5;
+    $start = max(1, $pagina - floor($max_links / 2));
+    $end = min($total_paginas, $start + $max_links - 1);
+
+    // Corrige si estamos al final
+    if (($end - $start + 1) < $max_links && $start > 1) {
+        $start = max(1, $end - $max_links + 1);
+    }
+
+    $queryBase = "hospital.php?busqueda=" . urlencode($busqueda) . "&ciudad=" . urlencode($filtroCiudad);
+  ?>
+
+  <!-- Botón anterior -->
+  <?php if ($pagina > 1): ?>
+    <a href="<?php echo $queryBase . '&pagina=' . ($pagina - 1); ?>">&laquo; Anterior</a>
+  <?php endif; ?>
+
+  <!-- Links numerados -->
+  <?php for ($i = $start; $i <= $end; $i++): ?>
+    <a href="<?php echo $queryBase . '&pagina=' . $i; ?>" class="<?php echo ($pagina == $i) ? 'active' : ''; ?>">
+      <?php echo $i; ?>
+    </a>
+  <?php endfor; ?>
+
+  <!-- Botón siguiente -->
+  <?php if ($pagina < $total_paginas): ?>
+    <a href="<?php echo $queryBase . '&pagina=' . ($pagina + 1); ?>">Siguiente &raquo;</a>
+  <?php endif; ?>
+</div>
+
 
       <!-- Botón para ver el mapa con todos los hospitales -->
       <div style="margin-top: 20px;">
@@ -255,5 +289,3 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
   <script src="../../js/sidebar.js"></script>
 </body>
 </html>
-
-
