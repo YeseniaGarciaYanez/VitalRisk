@@ -22,6 +22,8 @@ const Maintenance = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateMode, setDateMode] = useState("date");
   const [clues, setClues] = useState('');  // Variable para guardar el CLUES
+  const [maintenanceList, setMaintenanceList] = useState([]);
+
 
   const formattedDate = new Intl.DateTimeFormat('es-ES', {
     day: '2-digit',
@@ -41,6 +43,8 @@ const Maintenance = () => {
         console.error('Error al obtener los datos:', error);
         Alert.alert('Error', 'No se pudo obtener la lista de equipos.');
       }
+
+      
     };
     fetchData();
 
@@ -63,16 +67,20 @@ const Maintenance = () => {
       Alert.alert('Error', 'Por favor, completa todos los campos.');
       return;
     }
-
+  
+    // Formateamos la fecha en ISO antes de enviarla
+    const formattedDateForSend = date.toISOString().split('T')[0];  // '2025-04-03'
+  
+    //---------------------------------------------------------------------------------------------------------------
     try {
       // Enviar datos al servidor (incluyendo el CLUES)
-      const response = await axios.post('http://192.168.100.8/VitalRisk/App/src/apis/mantenimiento.php', {
+      const response = await axios.post('http://192.168.0.101/VitalRisk/App/src/apis/mantenimiento.php', {
         clues,
         equipment,
         problem,
-        date: formattedDate,
+        date: formattedDateForSend,  // Enviamos la fecha en formato 'YYYY-MM-DD'
       });
-
+  
       if (response.data.success) {
         Alert.alert('Éxito', 'Solicitud de mantenimiento enviada.');
         setEquipment('');
@@ -86,6 +94,7 @@ const Maintenance = () => {
       Alert.alert('Error', 'No se pudo enviar la solicitud de mantenimiento.');
     }
   };
+  
 
   const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -166,9 +175,54 @@ const Maintenance = () => {
           </View>
         ) : (
           <View>
-            <Text style={styles.title}>Mantenimientos Agendados</Text>
-            <Text style={{ textAlign: 'center', marginTop: 20 }}>Aquí se mostrarán los mantenimientos agendados.</Text>
-          </View>
+        <Text style={styles.title}>Mantenimientos Agendados</Text>
+
+        <TouchableOpacity 
+        style={[styles.button, { marginBottom: 10 }]} 
+        onPress={async () => {
+          try {
+            const response = await axios.post(
+              'http://192.168.0.101/VitalRisk/App/src/apis/ver_mantenimientos.php',
+              { clues } // Enviamos el CLUES como en tu función original
+            );
+
+            if (response.data.success && Array.isArray(response.data.data)) {
+              setMaintenanceList(response.data.data); // data está dentro de response.data
+            } else {
+              console.error('Respuesta inválida:', response.data.message);
+              Alert.alert('Aviso', 'No se recibieron datos válidos.');
+            }
+          } catch (error) {
+            console.error('Error al obtener mantenimientos:', error);
+            Alert.alert('Error', 'No se pudo obtener la lista de mantenimientos.');
+          }
+        }}
+      >
+  
+
+    <Text style={styles.buttonText}>Cargar Mantenimientos</Text>
+  </TouchableOpacity>
+
+  {maintenanceList.length === 0 ? (
+    <Text style={{ textAlign: 'center', color: '#999' }}>No hay mantenimientos agendados.</Text>
+  ) : (
+    maintenanceList.map((item, index) => (
+      <View key={index} style={{
+        backgroundColor: '#F0F4F7',
+        padding: 12,
+        borderRadius: 10,
+        marginBottom: 10,
+        borderLeftWidth: 5,
+        borderLeftColor: '#23998E'
+      }}>
+        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{item.equipo}</Text>
+        <Text style={{ color: '#555' }}>Problema: {item.problema}</Text>
+        <Text style={{ color: '#777' }}>Fecha: {item.fecha}</Text>
+      </View>
+    ))
+  )}
+</View>
+
         )}
 
       </ScrollView>
@@ -179,6 +233,7 @@ const Maintenance = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
+    height: 700,
     padding: 20,
   },
   scrollContainer: {
@@ -235,6 +290,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#23998E',
     paddingVertical: 14,
     borderRadius: 10,
+    marginTop: 10,
     alignItems: 'center',
   },
   buttonText: {
