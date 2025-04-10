@@ -1,4 +1,14 @@
 <?php
+// Función auxiliar para obtener un campo buscando variantes
+function getFieldValue($item, $keys) {
+    foreach ($keys as $key) {
+        if (isset($item[$key])) {
+            return $item[$key];
+        }
+    }
+    return '';
+}
+
 // Número de registros por página
 $limit = 10;
 
@@ -7,23 +17,39 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit; // Calcular el inicio de los datos para esta página
 
 // Obtener los datos de la API
-$file = file_get_contents('https://sheet2api.com/v1/I4xIqLkaSRe4/empresas-vendedores-de-equipos-medicos');
+$url = 'https://sheet2api.com/v1/I4xIqLkaSRe4/empresas-vendedores-de-equipos-medicos';
+$file = file_get_contents($url);
 $data = json_decode($file, true);
 
-// Filtrar los equipos por búsqueda
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-if ($search) {
-    $data = array_filter($data, function($item) use ($search) {
-        return stripos($item['Marca'], $search) !== false || stripos($item['Categoría'], $search) !== false;
-    });
+// Recolectar ciudades disponibles para el dropdown
+$ciudadesDisponibles = [];
+foreach ($data as $item) {
+    $ciudad = getFieldValue($item, ['Ubicación', 'ubicacion', 'Ciudad', 'ciudad']); // Adapta los nombres de los campos según tu API
+    if ($ciudad && !in_array($ciudad, $ciudadesDisponibles)) {
+        $ciudadesDisponibles[] = $ciudad;
+    }
 }
+sort($ciudadesDisponibles);
 
-// Contar el total de registros
-$total_records = count($data);
+// Recoger parámetros para filtros
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$filtroCiudad = isset($_GET['ciudad']) ? $_GET['ciudad'] : '';
+
+// Filtrar los equipos por búsqueda y ciudad
+$data_filtrada = array_filter($data, function($item) use ($search, $filtroCiudad) {
+    $productoCoincide = !$search || stripos($item['Producto'], $search) !== false;
+    $empresaCoincide = !$search || stripos($item['Empresa'], $search) !== false;
+    $ciudadCoincide = !$filtroCiudad || getFieldValue($item, ['Ubicación', 'ubicacion', 'Ciudad', 'ciudad']) === $filtroCiudad; // Adapta los nombres de los campos
+
+    return ($productoCoincide || $empresaCoincide) && $ciudadCoincide;
+});
+
+// Contar el total de registros filtrados
+$total_records = count($data_filtrada);
 $total_paginas = ceil($total_records / $limit);
 
-// Limitar los datos a los que corresponden a la página actual
-$data_paginada = array_slice($data, $offset, $limit);
+// Limitar los datos filtrados a los que corresponden a la página actual
+$data_paginada = array_slice($data_filtrada, $offset, $limit);
 ?>
 
 <!DOCTYPE html>
@@ -38,32 +64,45 @@ $data_paginada = array_slice($data, $offset, $limit);
     <link rel="stylesheet" href="../../css/pagination.css">
 
     <style>
-        /* Estilo para la barra de búsqueda centrada */
+        /* Estilo para la barra de búsqueda con filtro de ciudad */
         * {
-      font-family: 'Montserrat', sans-serif;
-    }
+            font-family: 'Montserrat', sans-serif;
+        }
         .search-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
             margin: 20px 0;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
         }
-        .search-container input[type="text"] {
+        .search-container > div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .search-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .search-container input[type="text"],
+        .search-container select {
             padding: 10px;
             font-size: 14px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            width: 300px;
+            width: 300px; /* Ancho base para los inputs y selects */
             transition: all 0.3s ease;
+            max-width: 100%; /* Asegura que no se desborden en pantallas pequeñas */
         }
-        .search-container input[type="text"]:focus {
-            border-color: #5C6BC0;
+        .search-container input[type="text"]:focus,
+        .search-container select:focus {
+            border-color: #7CBC9A;
             box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
         }
         .search-container button {
             padding: 10px 20px;
-            background-color: #5C6BC0;
+            background-color: #7CBC9A;
             color: white;
             border: none;
             border-radius: 5px;
@@ -84,6 +123,7 @@ $data_paginada = array_slice($data, $offset, $limit);
             cursor: pointer;
             font-size: 14px;
             transition: background-color 0.3s ease;
+            margin-top: 10px; /* Espacio desde el formulario en pantallas pequeñas */
         }
         .reset-button:hover {
             background-color: #3f51b5;
@@ -109,54 +149,53 @@ $data_paginada = array_slice($data, $offset, $limit);
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="../../logo/vitarisk.png" alt="Logo">
         </div>
         <ul class="sidebar-menu" id="sidebar-menu">
-            <!-- Menú generado dinámicamente -->
-        </ul>
+            </ul>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Header -->
         <div class="header">
             <div class="header-left">
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <h1>Equipo médico</h1>
+                <h1>Empresas vendedoras</h1>
             </div>
             <div class="header-right">
-                <div class="notification">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
-                </div>
+                
                 <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="User">
+                   
                     <span>Usuario Técnico</span>
                 </div>
             </div>
         </div>
 
-        <!-- Barra de búsqueda centrada -->
         <div class="search-container">
             <form method="get" action="">
-                <input type="text" name="search" placeholder="Buscar por producto o empresa..." value="<?php echo htmlspecialchars($search); ?>">
-                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+                <div>
+                    <label for="search">Buscar por producto o empresa:</label>
+                    <input type="text" name="search" id="search" placeholder="Buscar..." value="<?php echo htmlspecialchars($search); ?>">
+                </div>
+                <div>
+                    <label for="ciudad">Filtrar por ubicación:</label>
+                    <select name="ciudad" id="ciudad">
+                        <option value="">-- Todas --</option>
+                        <?php foreach ($ciudadesDisponibles as $ciudad): ?>
+                            <option value="<?php echo htmlspecialchars($ciudad); ?>" <?php if ($filtroCiudad == $ciudad) echo 'selected'; ?>>
+                                <?php echo htmlspecialchars($ciudad); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <button type="submit"><i class="fas fa-search"></i> Filtrar</button>
             </form>
+            
         </div>
 
-        <!-- Botón para regresar a la vista principal -->
-        <?php if ($search): ?>
-            <div class="button-container">
-                <a href="equipment.php" class="reset-button">Ver Todos</a>
-            </div>
-        <?php endif; ?>
-
-        <!-- Contenedor de la tabla -->
         <div class="table-container">
             <table class="styled-table">
                 <thead>
@@ -177,14 +216,13 @@ $data_paginada = array_slice($data, $offset, $limit);
                             <td><?php echo htmlspecialchars($item['Producto'] ?? ''); ?></td>
                             <td><?php echo htmlspecialchars($item['Precio'] ?? ''); ?></td>
                             <td><?php echo htmlspecialchars($item['Especificaciones'] ?? ''); ?></td>
-                            <td><?php echo htmlspecialchars($item['Ubicación'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars(getFieldValue($item, ['Ubicación', 'ubicacion', 'Ciudad', 'ciudad'])); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
 
-        <!-- Sección de paginación -->
         <?php
         // Definir el máximo de botones a mostrar
         $max_botones = 6;
@@ -205,15 +243,15 @@ $data_paginada = array_slice($data, $offset, $limit);
         <div class="pagination-container">
             <div class="pagination">
                 <?php if ($page > 1): ?>
-                    <a href="?page=<?php echo ($page - 1); ?>&search=<?php echo urlencode($search); ?>">‹</a>
+                    <a href="?page=<?php echo ($page - 1); ?>&search=<?php echo urlencode($search); ?>&ciudad=<?php echo urlencode($filtroCiudad); ?>">‹</a>
                 <?php endif; ?>
 
                 <?php for ($i = $inicio_rango; $i <= $fin_rango; $i++): ?>
-                    <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>" class="<?php echo ($page == $i) ? 'active' : ''; ?>"><?php echo $i; ?></a>
+                    <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>&ciudad=<?php echo urlencode($filtroCiudad); ?>" class="<?php echo ($page == $i) ? 'active' : ''; ?>"><?php echo $i; ?></a>
                 <?php endfor; ?>
 
                 <?php if ($page < $total_paginas): ?>
-                    <a href="?page=<?php echo ($page + 1); ?>&search=<?php echo urlencode($search); ?>">›</a>
+                    <a href="?page=<?php echo ($page + 1); ?>&search=<?php echo urlencode($search); ?>&ciudad=<?php echo urlencode($filtroCiudad); ?>">›</a>
                 <?php endif; ?>
             </div>
         </div>
