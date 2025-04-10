@@ -1,4 +1,14 @@
 <?php
+    // Función auxiliar para obtener un campo buscando variantes
+    function getFieldValue($item, $keys) {
+        foreach ($keys as $key) {
+            if (isset($item[$key])) {
+                return $item[$key];
+            }
+        }
+        return '';
+    }
+
     // Obtener parámetros de filtro
     $entidad_seleccionada = isset($_GET['entidad']) ? $_GET['entidad'] : '';
     $municipio_seleccionado = isset($_GET['municipio']) ? $_GET['municipio'] : '';
@@ -17,14 +27,22 @@
     // Para dropdown global de municipios
     $municipiosGlobal = [];
     foreach ($data as $item) {
-        $municipio = $item['MUNICIPIO'] ?? 'Desconocido';
-        $entidad = $item['ENTIDAD'] ?? 'Desconocido';
-        
+        // Intenta obtener la entidad desde múltiples campos
+        $rawEntidad = getFieldValue($item, ['ENTIDAD', 'entidad', 'Entidad', 'ESTADO', 'estado']);
+        // Normaliza la entidad: quita espacios, pasa a minúsculas y luego capitaliza
+        $entidad = $rawEntidad ? ucwords(strtolower(trim($rawEntidad))) : 'Desconocido';
+
+        // Normaliza el municipio, en caso de ser necesario
+        $rawMunicipio = getFieldValue($item, ['MUNICIPIO', 'municipio']);
+        $municipio = $rawMunicipio ? ucwords(strtolower(trim($rawMunicipio))) : 'Desconocido';
+
+        // Agrupar por entidad y municipio
         if (!isset($hospitales_municipios[$entidad][$municipio])) {
             $hospitales_municipios[$entidad][$municipio] = [];
         }
         $hospitales_municipios[$entidad][$municipio][] = $item;
 
+        // Recoger todos los municipios a nivel global para el dropdown correspondiente
         if (!in_array($municipio, $municipiosGlobal)) {
             $municipiosGlobal[] = $municipio;
         }
@@ -34,6 +52,7 @@
     // Generar arreglo de municipios por entidad para el dropdown
     $municipiosPorEntidad = [];
     foreach ($hospitales_municipios as $entidad => $municipios) {
+        // Los municipios son las llaves del array
         $municipiosPorEntidad[$entidad] = array_values(array_unique(array_keys($municipios)));
         sort($municipiosPorEntidad[$entidad]);
     }
@@ -246,10 +265,19 @@
       "BAJA CALIFORNIA_SAN QUINTIN": [30.2833, -115.0333],
       "BAJA CALIFORNIA_SAN FELIPE": [30.0667, -113.3333],
       "BAJA CALIFORNIA_TECATE": [32.2678, -116.6067]
-      // Agrega más municipios según necesites
     };
 
     var marcadores = [];
+
+    // Crear un icono personalizado con el color deseado
+    var customIcon = new L.Icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
 
     function limpiarMarcadores() {
         marcadores.forEach(function(marker) {
@@ -293,7 +321,7 @@
                                         CLUES: ${hospital["CLUES"]}<br>
                                         Entidad: ${hospital["ENTIDAD"]}<br>
                                         Municipio: ${hospital["MUNICIPIO"]}`;
-                    var marker = L.marker([lat, lng]).addTo(map).bindPopup(popupContent);
+                    var marker = L.marker([lat, lng], {icon: customIcon}).addTo(map).bindPopup(popupContent);
                     marcadores.push(marker);
                     contador++;
                 });

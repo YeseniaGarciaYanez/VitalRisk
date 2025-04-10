@@ -220,25 +220,28 @@ $hospitales_paginados = array_slice($hospitales_filtrados, $inicio, $limite);
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($hospitales_paginados as $item): 
-                  $nombreHospital = $item['NOMBRE DE LA INSTITUCION'] ?? '';
-                  $estado = getFieldValue($item, ['ENTIDAD', 'entidad']);
-                  $ciudad = getFieldValue($item, ['MUNICIPIO', 'municipio']);
-          ?>
-          <tr>
-            <td><?php echo htmlspecialchars($item['CLUES'] ?? ''); ?></td>
-            <td><?php echo htmlspecialchars($item['CLAVE DE LA INSTITUCION'] ?? ''); ?></td>
-            <td><?php echo htmlspecialchars($nombreHospital); ?></td>
-            <td><?php echo htmlspecialchars($estado); ?></td>
-            <td><?php echo htmlspecialchars($ciudad); ?></td>
-            <td>
-              <a href="mapa.php?estado=<?php echo urlencode($estado); ?>&ciudad=<?php echo urlencode($ciudad); ?>" class="btn-mapa">
-                <i class="fas fa-map-marked-alt"></i> Ver Mapa
-              </a>
-            </td>
-          </tr>
-          <?php endforeach; ?>
-        </tbody>
+        <tbody>
+  <?php foreach ($hospitales_paginados as $item): 
+    // Usamos getFieldValue para considerar variaciones en la clave del nombre
+    $nombreHospital = getFieldValue($item, ['NOMBRE DE LA INSTITUCION', 'nombre de la institucion']);
+    $estado = getFieldValue($item, ['ENTIDAD', 'entidad']);
+    $ciudad = getFieldValue($item, ['MUNICIPIO', 'municipio']);
+  ?>
+  <tr>
+    <td><?php echo htmlspecialchars($item['CLUES'] ?? ''); ?></td>
+    <td><?php echo htmlspecialchars($item['CLAVE DE LA INSTITUCION'] ?? ''); ?></td>
+    <td><?php echo htmlspecialchars($nombreHospital); ?></td>
+    <td><?php echo htmlspecialchars($estado); ?></td>
+    <td><?php echo htmlspecialchars($ciudad); ?></td>
+    <td>
+      <a href="mapa.php?estado=<?php echo urlencode($estado); ?>&ciudad=<?php echo urlencode($ciudad); ?>" class="btn-mapa">
+        <i class="fas fa-map-marked-alt"></i> Ver Mapa
+      </a>
+    </td>
+  </tr>
+  <?php endforeach; ?>
+</tbody>
+
       </table>
 
 <!-- Paginación mejorada -->
