@@ -130,9 +130,9 @@ $data_paginada = array_slice($data, $offset, $limit);
                 <h1>Equipo médico</h1>
             </div>
             <div class="header-right">
-
+                <div class="notification">
                 </div>
-                    <span>Usuario Técnico</span>
+                <div class="user-profile">
                 </div>
             </div>
         </div>
