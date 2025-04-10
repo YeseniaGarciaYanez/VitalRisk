@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
                
             ]},
+            { "icon": "far fa-building", "name": "Empresas", "url": "company.php" },
             { "icon": "fas fa-laptop-medical", "name": "Equipos", "url": "equipment.php" },
             { "icon": "fas fa-file", "name": "Archivos", "submenu": [
                 { "name": "Subidos", "url": "https://drive.google.com/drive/folders/1k3gWuIPc31SIB2A0FGoBuh_SX_AAwbyJ?usp=drive_link", "target": "_blank" },
