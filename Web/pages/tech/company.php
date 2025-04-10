@@ -14,7 +14,7 @@ $data = json_decode($file, true);
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 if ($search) {
     $data = array_filter($data, function($item) use ($search) {
-        return stripos($item['Marca'], $search) !== false || stripos($item['Categoría'], $search) !== false;
+        return stripos($item['producto'], $search) !== false || stripos($item['Empresa'], $search) !== false;
     });
 }
 
