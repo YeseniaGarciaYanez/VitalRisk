@@ -4,11 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const menus = {
         "tecnico": [
             { "icon": "fas fa-home", "name": "Inicio", "url": "DashboardTec.php" },
+            { "icon": "fas fa-users", "name": "Generar reporte", "url": "crear_reporte.php" },
             { "icon": "fas fa-hospital", "name": "Hospitales", "url": "hospital.php" },
             { "icon": "fas fa-tools", "name": "Mantenimiento", "submenu": [
                 { "name": "Preventivo", "url": "maintenance.php" },
+            
                
             ]},
+            { "icon": "far fa-building", "name": "Empresas", "url": "company.php" },
             { "icon": "fas fa-laptop-medical", "name": "Equipos", "url": "equipment.php" },
             { "icon": "fas fa-file", "name": "Archivos", "submenu": [
                 { "name": "Subidos", "url": "https://drive.google.com/drive/folders/1k3gWuIPc31SIB2A0FGoBuh_SX_AAwbyJ?usp=drive_link", "target": "_blank" },

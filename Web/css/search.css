@@ -1,0 +1,82 @@
+ /* Estilo para la barra de búsqueda con filtro de ubicacion */
+ * {
+    font-family: 'Montserrat', sans-serif;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+.search-container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.search-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.search-container input[type="text"],
+.search-container select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 300px; /* Ancho base para los inputs y selects */
+    transition: all 0.3s ease;
+    max-width: 100%; /* Asegura que no se desborden en pantallas pequeñas */
+}
+.search-container input[type="text"]:focus,
+.search-container select:focus {
+    border-color: #1D5E69;
+    box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+}
+.search-container button {
+    padding: 10px 20px;
+    background-color: #1D5E69;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+.search-container button:hover {
+    background-color: #004D40;
+}
+.reset-button {
+    padding: 10px 20px;
+    background-color: #1D5E69;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Espacio desde el formulario en pantallas pequeñas */
+}
+.reset-button:hover {
+    background-color: #004D40;
+}
+/* Estilo para el botón "Ver Todos" centrado en la parte inferior */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.button-container a {
+    padding: 10px 20px;
+    background-color: #1D5E69;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+.button-container a:hover {
+    background-color: #004D40;
+}

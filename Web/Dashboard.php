@@ -38,12 +38,9 @@
                 <h1>Dashboard</h1>
             </div>
             <div class="header-right">
-                <div class="notification">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
-                </div>
+                
                 <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="User">
+                    
                     <span>Usuario Técnico</span>
                 </div>
             </div>
@@ -63,7 +60,6 @@
                 { "icon": "fas fa-tools", "name": "Maintenance" },
                 { "icon": "fas fa-box-open", "name": "Inventory" },
                 { "icon": "fas fa-file", "name": "Files" },
-                { "icon": "fas fa-folder", "name": "Reports" }
             ]
         };
         

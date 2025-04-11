@@ -6,6 +6,17 @@
     <title>Dashboard con Sidebar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../css/dashboard.css">
+
+    <style>
+            .content img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10%;
+      width: 500px;
+    }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -35,19 +46,17 @@
             <div class="header-right">
                 <div class="notification">
                 </div>
-                <div class="user-profile">
-                    <span>Usuario Administrador</span>
-                </div>
             </div>
         </div>
 
-    
+        <div class="content">
+      <h2>Bienvenido, Administrador</h2>
+      <p>La gestión inteligente de equipos médicos comienza contigo.</p>
+      <img src="../../images/admin.png" alt="Técnico">
     </div>
-    <img src="../../images/admin.jpg" alt="admin" style="display: block; margin: 50px auto 0; height: 450px; width: 450px; height: auto; border-radius: 10%;">
+  </div>
 
-
-    <script>
-        // Menú móvil
+    <script>        // Menú móvil
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
         });

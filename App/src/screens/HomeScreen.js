@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import MainLayout from '../components/MainLayout';
+import { View, Text, StyleSheet, Image } from 'react-native';
+
+
+const img = require('../../Logo/equipo.png');
 
 const HomeScreen = () => {
   return (
@@ -8,6 +10,7 @@ const HomeScreen = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Bienvenido a VitalRisk</Text>
         <Text style={styles.description}>Administra tus equipos y mantenimientos de forma eficiente.</Text>
+        <Image style={styles.image} source={img} />
       </View>
 
   );
@@ -19,6 +22,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+  },
+  image: {
+    width: 300,
+    height: 250,
+    marginBottom: 80,
   },
   title: {
     fontSize: 24,

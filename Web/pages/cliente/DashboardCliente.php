@@ -6,6 +6,26 @@
     <title>Dashboard con Sidebar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .cliente-img {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center; /* Centrar la imagen horizontalmente */
+        align-items: center;
+    }
+
+    .img-cliente {
+        width: 100% !important; /* Asegura que la imagen crezca */
+        max-width: 1000px !important; /* Tamaño máximo */
+        height: auto !important;
+        display: block;
+    }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -42,9 +62,12 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Bienvenido!!!</h2>
-            <p>Selecciona una opción del menú para continuar.</p>
-        </div>
+      <h2>Bienvenido a Vitalrisk</h2>
+      <p>Con nuestro sistema, tus equipos médicos estarán siempre listos para salvar vidas. ¡Estamos contigo!</p>
+      <div class="cliente-img">
+        <img src="../../images/cliente.png" alt="Cliente" class="img-cliente">
+    </div>
+  </div>
 
     <script>
         // Menú móvil

@@ -19,24 +19,7 @@
       border-radius: 10%;
       width: 450px;
     }
-    .logout-btn {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-    }
-    .logout-btn button {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .logout-btn button:hover {
-      background-color: var(--hover-color);
-    }
+
   </style>
 </head>
 <body>
@@ -46,11 +29,17 @@
     <div class="sidebar-header">
       <img src="../../logo/vitarisk.png" alt="Logo">
     </div>
-    <ul class="sidebar-menu" id="sidebar-menu">
-      <!-- Menú generado dinámicamente -->
-    </ul>
-    <div class="logout-btn">
-      <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+    <ul class="sidebar-menu">
+    <li><a href="DashboardTec.php"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="crear_reporte.php"><i class="fas fa-users"></i> Generar reporte</a></li>
+    <li><a href="hospital.php"><i class="fas fa-hospital"></i> Hospitales</a></li>
+    <li><a href="maintenance.php"><i class="fas fa-tools"></i> Mantenimiento</a></li>
+    <li><a href="company.php"><i class="fas fa-building"></i>Empresas</a></li>
+    <li><a href="equipment.php"><i class="fas fa-laptop-medical"></i>Equipos</a></li>
+    <li><a href="https://drive.google.com/drive/folders/1k3gWuIPc31SIB2A0FGoBuh_SX_AAwbyJ?usp=sharing" target="_blank">
+    <i class="fas fa-file"></i> Archivos</a>
+</ul>
+
     </div>
   </div>
 
@@ -62,11 +51,10 @@
         <div class="menu-toggle">
           <i class="fas fa-bars"></i>
         </div>
-        <h1>Técnico</h1>
+        <h1>Dashboard</h1>
       </div>
       <div class="header-right">
         <div class="user-profile">
-          <img src="https://via.placeholder.com/40" alt="User">
           <span>Usuario Técnico</span>
         </div>
       </div>
@@ -80,12 +68,6 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-      window.location.href = "logout.php";
-    });
-  </script>
-  <script src="../../js/sidebar.js"></script>
 
 </body>
 </html>

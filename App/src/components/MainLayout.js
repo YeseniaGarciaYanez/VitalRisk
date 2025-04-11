@@ -16,9 +16,12 @@ const MainLayout = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5F5F5',
+    
   },
   content: {
     flex: 1, // Ocupa el espacio disponible entre Header y Footer
+    justifyContent: 'center', // Centra verticalmente
     padding: 10,
   },
 });
