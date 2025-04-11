@@ -23,12 +23,18 @@ $normativas_vigentes = array_filter($normativas, function($item) {
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/normativas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+            * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <img src="../../images/logovital2.png" alt="Logo" style="border-radius: 50%;">
+            <img src="../../Logo/vitarisk.png" alt="Logo" style="border-radius: 50%;">
             <h2>VitalRisk</h2>
         </div>
         <ul class="sidebar-menu">
@@ -50,7 +56,6 @@ $normativas_vigentes = array_filter($normativas, function($item) {
             </div>
             <div class="header-right">
                 <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="User">
                     <span>Usuario</span>
                 </div>
             </div>

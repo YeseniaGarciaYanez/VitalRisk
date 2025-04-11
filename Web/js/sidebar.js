@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const menus = {
         "tecnico": [
             { "icon": "fas fa-home", "name": "Inicio", "url": "DashboardTec.php" },
+            { "icon": "fas fa-users", "name": "Generar reporte", "url": "crear_reporte.php" },
             { "icon": "fas fa-hospital", "name": "Hospitales", "url": "hospital.php" },
             { "icon": "fas fa-tools", "name": "Mantenimiento", "submenu": [
                 { "name": "Preventivo", "url": "maintenance.php" },
+            
                
             ]},
             { "icon": "far fa-building", "name": "Empresas", "url": "company.php" },
