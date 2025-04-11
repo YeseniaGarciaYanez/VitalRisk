@@ -30,14 +30,14 @@
       <img src="../../logo/vitarisk.png" alt="Logo">
     </div>
     <ul class="sidebar-menu">
-    <li><a href="DashboardTec.php"><i class="fas fa-home"></i> Dashboard</a></li>
-    <li><a href="equipment.php"><i class="fas fa-tools"></i> Equipamiento</a></li>
-    <li><a href="hospital.php"><i class="fas fa-history"></i> Hospitales</a></li>
-    <li><a href="maintenance.php"><i class="fas fa-calendar-alt"></i> Mantenimiento</a></li>
-    <li><a href="crear_reporte.php"><i class="fas fa-file-alt"></i> Generar reportes</a></li>
+    <li><a href="DashboardTec.php"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="crear_reporte.php"><i class="fas fa-users"></i> Generar reporte</a></li>
+    <li><a href="hospital.php"><i class="fas fa-hospital"></i> Hospitales</a></li>
+    <li><a href="maintenance.php"><i class="fas fa-tools"></i> Mantenimiento</a></li>
+    <li><a href="company.php"><i class="fas fa-building"></i>Empresas</a></li>
+    <li><a href="equipment.php"><i class="fas fa-laptop-medical"></i>Equipos</a></li>
     <li><a href="https://drive.google.com/drive/folders/1k3gWuIPc31SIB2A0FGoBuh_SX_AAwbyJ?usp=sharing" target="_blank">
-    <i class="fas fa-folder-open"></i> Archivos</a>
-    <li><a href="../../logout.php" onclick="return confirm('¿Estás seguro de cerrar sesión?')"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    <i class="fas fa-file"></i> Archivos</a>
 </ul>
 
     </div>
@@ -51,7 +51,7 @@
         <div class="menu-toggle">
           <i class="fas fa-bars"></i>
         </div>
-        <h1>Técnico</h1>
+        <h1>Dashboard</h1>
       </div>
       <div class="header-right">
         <div class="user-profile">
