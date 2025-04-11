@@ -1,31 +1,25 @@
 <?php
 // Obtener datos de la API de normativas
-$api_url = "https://sheet2api.com/v1/OOb2tXvPROOB/normativas";
-$normativas = json_decode(file_get_contents($api_url), true) ?: [];
+$api_url = "https://sheet2api.com/v1/OOb2tXvPROOB/normativas"; // Define la URL de la API que contiene los datos de las normativas.
+$normativas = json_decode(file_get_contents($api_url), true) ?: []; // Obtiene el contenido de la API, lo decodifica de JSON a un array asociativo, y si falla, asigna un array vacío.
 
 // Funciones de ayuda
-function formatYear($year) {
-    return is_numeric($year) ? $year : 'No especificado';
+function formatYear($year) { // Define una función para formatear el año de publicación.
+    return is_numeric($year) ? $year : 'No especificado'; // Si el año es numérico, lo devuelve; de lo contrario, devuelve 'No especificado'.
 }
-
-// Filtrar solo normativas vigentes
-$normativas_vigentes = array_filter($normativas, function($item) {
-    return ($item['Vigencia'] ?? '') === 'Vigente';
-});
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial--scale=1.0">
     <title>Normativas - VitalRisk</title>
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/normativas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="../../images/logovital2.png" alt="Logo" style="border-radius: 50%;">
@@ -38,15 +32,13 @@ $normativas_vigentes = array_filter($normativas, function($item) {
         </ul>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Header -->
         <div class="header">
             <div class="header-left">
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <h1>Normativas Vigentes</h1>
+                <h1>Normativas</h1>
             </div>
             <div class="header-right">
                 <div class="user-profile">
@@ -56,47 +48,43 @@ $normativas_vigentes = array_filter($normativas, function($item) {
             </div>
         </div>
 
-        <!-- Contenido principal -->
         <div class="content">
             <div class="normativas-container">
-                <!-- Barra de búsqueda y filtros -->
                 <div class="search-container">
                     <input type="text" class="search-bar" id="searchInput" placeholder="Buscar por palabra clave...">
                     <select class="filter-select" id="yearFilter">
                         <option value="all">Todas las fechas</option>
                         <?php
-                        $years = array_unique(array_column($normativas_vigentes, 'Fecha de Publicación'));
-                        rsort($years);
-                        foreach ($years as $year):
-                            if (is_numeric($year)):
+                        $years = array_unique(array_column($normativas, 'Fecha de Publicación')); // Obtiene los años únicos de las normativas.
+                        rsort($years); // Ordena los años de forma descendente.
+                        foreach ($years as $year): // Itera sobre los años únicos.
+                            if (is_numeric($year)): // Verifica si el año es numérico.
                         ?>
                         <option value="<?= $year ?>"><?= $year ?></option>
                         <?php endif; endforeach; ?>
                     </select>
                 </div>
                 
-                <!-- Listado de normativas -->
                 <div class="normativas-list" id="normativasList">
-                    <?php foreach ($normativas_vigentes as $normativa): ?>
+                    <?php foreach ($normativas as $normativa): ?> 
                         <div class="normativa-card" 
-                             data-keywords="<?= strtolower(htmlspecialchars($normativa['Título'] . ' ' . $normativa['Descripción'])) ?>"
-                             data-year="<?= htmlspecialchars($normativa['Fecha de Publicación']) ?>">
-                            <h3><?= htmlspecialchars($normativa['Título']) ?></h3>
+                             data-keywords="<?= strtolower(($normativa['Título'] . ' ' . $normativa['Descripción'])) ?>"
+                             data-year="<?=($normativa['Fecha de Publicación']) ?>">
+                            <h3><?= ($normativa['Título']) ?></h3>
                             <div style="margin: 8px 0;">
                                 <span class="vigente-badge">VIGENTE</span>
                                 <span style="margin-left: 10px; color: #6c757d;">
-                                    <?= htmlspecialchars($normativa['Código']) ?> - <?= formatYear($normativa['Fecha de Publicación']) ?>
+                                    <?=($normativa['Código']) ?> - <?= formatYear($normativa['Fecha de Publicación']) ?>
                                 </span>
                             </div>
-                            <p><?= htmlspecialchars($normativa['Descripción']) ?></p>
+                            <p><?=($normativa['Descripción']) ?></p>
                             <div style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
-                                <strong>Institución:</strong> <?= htmlspecialchars($normativa['Institución Emisora'] ?? 'No especificada') ?>
+                                <strong>Institución:</strong> <?= ($normativa['Institución Emisora'] ?? 'No especificada') ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    
-                    <?php if (empty($normativas_vigentes)): ?>
-                        <p>No se encontraron normativas vigentes.</p>
+                    <?php if (empty($normativas)): ?> // Verifica si no hay normativas.
+                        <p>No se encontraron normativas.</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -128,11 +116,6 @@ $normativas_vigentes = array_filter($normativas, function($item) {
                 card.style.display = (matchesSearch && matchesYear) ? 'block' : 'none';
             });
         }
-        
-        // Menú móvil
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        });
     </script>
 </body>
 </html>
